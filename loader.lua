@@ -24,6 +24,8 @@
     [ BBot ] - [ Inspiration to make such a nice UI and high quality/quantity feature list ]
     [ Legacy ] - [ Best and only beta tester ]
 
+    ~ WinHVH ~
+
 ]]
 
 function LPH_NO_VIRTUALIZE(fuction) -- unnecessary now
@@ -32,7 +34,7 @@ end
 LPH_JIT_MAX = LPH_NO_VIRTUALIZE
 
 local devMode = true
-local defaultUIName = "Wapus" -- $$$
+local defaultUIName = "WinHVH" -- $$$
 local folderName = "Phantom Forces Cheat"
 local connectionList = {}
 local callbackList = {}
@@ -41,7 +43,7 @@ local chatSpamLists = {}
 local customAudios = {}
 local cham = {}
 local unloadMain
-local wapus
+local winhvh
 
 -- anti votekick bot code
 local userName = game:GetService("Players").LocalPlayer.Name
@@ -142,7 +144,7 @@ do -- Drawing Library
         ZIndex = 1
     }
 
-    local defaults = { -- benefit of remaking it is to have a uniform drawing api across all executors because the wapus ui was originally made with krampus' drawing api
+    local defaults = { -- benefit of remaking it is to have a uniform drawing api across all executors because the winhvh ui was originally made with krampus' drawing api
         Square = {
             Position = nv,
             Size = nv,
@@ -1142,7 +1144,7 @@ do -- UI Library
     local TEXTBOX = 14
     --real
 
-    wapus = {
+    winhvh = {
         toggleKeybind = "RightShift",
         theme = {
             accent = Color3.fromRGB(127, 72, 163), -- Color3.fromRGB(23, 122, 179)
@@ -1174,14 +1176,14 @@ do -- UI Library
     local insert = table.insert
 
     --local customFont = Drawing.new("Font", "EpilepsySans") -- cant find a free SpaceMace ttf file but thats what bbot v2 used origionally
-    --customFont.Data = wapus.theme.fontData
+    --customFont.Data = winhvh.theme.fontData
     local defaultProperties = {
         Filled = true,
         Outline = true,
         Transparency = 1,
         NumSides = 64,
         Visible = false,
-        Font = wapus.useCustomFont and customFont or nil
+        Font = winhvh.useCustomFont and customFont or nil
     }
     local themed = {
         accent = {},
@@ -1333,10 +1335,10 @@ do -- UI Library
         textbox.callback = callback
         textbox.SetValue = setTextValue
         textbox.height = 34
-        textbox.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 15), Size = v2(213, 18), Color = wapus.theme.outline, Visible = visible}, "outline")
-        textbox.button = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Position = textbox.buttonoutline.Position + v2(1, 1), Size = v2(211, 16), Color = wapus.theme.background, Visible = visible})
-        textbox.text = self.menu:draw("Text", {Position = textbox.buttonoutline.Position + v2(2, -16), Size = 14, Color = wapus.theme.text, Text = text, Visible = visible}, "text")
-        textbox.valuetext = self.menu:draw("Text", {Position = textbox.button.Position + v2(6, 0), Size = 14, Color = wapus.theme.text, Text = textbox.value, Visible = visible}, "text")
+        textbox.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 15), Size = v2(213, 18), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        textbox.button = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Position = textbox.buttonoutline.Position + v2(1, 1), Size = v2(211, 16), Color = winhvh.theme.background, Visible = visible})
+        textbox.text = self.menu:draw("Text", {Position = textbox.buttonoutline.Position + v2(2, -16), Size = 14, Color = winhvh.theme.text, Text = text, Visible = visible}, "text")
+        textbox.valuetext = self.menu:draw("Text", {Position = textbox.button.Position + v2(6, 0), Size = 14, Color = winhvh.theme.text, Text = textbox.value, Visible = visible}, "text")
         self.bgOffset += v2(0, textbox.height)
         insert(self.elements, textbox)
         return textbox
@@ -1349,9 +1351,9 @@ do -- UI Library
         button.type = "button"
         button.callback = callback
         button.height = 23
-        button.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 3), Size = v2(213, 18), Color = wapus.theme.outline, Visible = visible}, "outline")
-        button.button = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Position = button.buttonoutline.Position + v2(1, 1), Size = v2(211, 16), Color = wapus.theme.background, Visible = visible})
-        button.text = self.menu:draw("Text", {Position = button.button.Position + v2(106, 0), Center = true, Size = 14, Color = wapus.theme.text, Text = text, Visible = visible}, "text")
+        button.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 3), Size = v2(213, 18), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        button.button = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Position = button.buttonoutline.Position + v2(1, 1), Size = v2(211, 16), Color = winhvh.theme.background, Visible = visible})
+        button.text = self.menu:draw("Text", {Position = button.button.Position + v2(106, 0), Center = true, Size = 14, Color = winhvh.theme.text, Text = text, Visible = visible}, "text")
         self.bgOffset += v2(0, button.height)
         insert(self.elements, button)
         return button
@@ -1377,11 +1379,11 @@ do -- UI Library
         dropdown.callback = callback
         dropdown.SetValue = setDropValue
         dropdown.height = 34
-        dropdown.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 15), Size = v2(213, 18), Color = wapus.theme.outline, Visible = visible}, "outline")
-        dropdown.button = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Position = dropdown.buttonoutline.Position + v2(1, 1), Size = v2(211, 16), Color = wapus.theme.background, Visible = visible})
-        dropdown.text = self.menu:draw("Text", {Position = dropdown.buttonoutline.Position + v2(2, -16), Size = 14, Color = wapus.theme.text, Text = text, Visible = visible}, "text")
-        dropdown.valuetext = self.menu:draw("Text", {Position = dropdown.button.Position + v2(6, 0), Size = 14, Color = wapus.theme.text, Text = dropdown.value, Visible = visible}, "text")
-        dropdown.droptext = self.menu:draw("Text", {Position = dropdown.button.Position + v2(200, 2), Size = 14, Color = wapus.theme.text, Text = "-", Visible = visible}, "text")
+        dropdown.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 15), Size = v2(213, 18), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        dropdown.button = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Position = dropdown.buttonoutline.Position + v2(1, 1), Size = v2(211, 16), Color = winhvh.theme.background, Visible = visible})
+        dropdown.text = self.menu:draw("Text", {Position = dropdown.buttonoutline.Position + v2(2, -16), Size = 14, Color = winhvh.theme.text, Text = text, Visible = visible}, "text")
+        dropdown.valuetext = self.menu:draw("Text", {Position = dropdown.button.Position + v2(6, 0), Size = 14, Color = winhvh.theme.text, Text = dropdown.value, Visible = visible}, "text")
+        dropdown.droptext = self.menu:draw("Text", {Position = dropdown.button.Position + v2(200, 2), Size = 14, Color = winhvh.theme.text, Text = "-", Visible = visible}, "text")
         self.bgOffset += v2(0, dropdown.height)
         insert(self.elements, dropdown)
         return dropdown
@@ -1414,11 +1416,11 @@ do -- UI Library
         slider.height = 27
         slider.value = slider.default
         local ratio = (slider.default - slider.min) / (slider.max - slider.min)
-        slider.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 16), Size = v2(213, 11), Color = wapus.theme.outline, Visible = visible}, "outline")
-        slider.button = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 3), {Position = slider.buttonoutline.Position + v2(1, 1), Size = v2(211, 9), Color = wapus.theme.background, Visible = visible})
-        slider.highlight = modifyDrawing(self.menu:gradient({wapus.theme.accent, darken(wapus.theme.accent, 0.25)}, 3), {Position = slider.button.Position, Size = v2(math.clamp(ratio * 211, 0, 211), 9), Color = wapus.theme.accent, Visible = visible})
-        slider.text = self.menu:draw("Text", {Position = slider.buttonoutline.Position + v2(2, -15), Size = 14, Color = wapus.theme.text, Text = text, Visible = visible}, "text")
-        slider.valuetext = self.menu:draw("Text", {Position = slider.button.Position + v2(106, -3), Size = 14, Center = true, Color = wapus.theme.text, Text = tostring(default) .. slider.suffix, Visible = visible}, "text")
+        slider.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 16), Size = v2(213, 11), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        slider.button = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 3), {Position = slider.buttonoutline.Position + v2(1, 1), Size = v2(211, 9), Color = winhvh.theme.background, Visible = visible})
+        slider.highlight = modifyDrawing(self.menu:gradient({winhvh.theme.accent, darken(winhvh.theme.accent, 0.25)}, 3), {Position = slider.button.Position, Size = v2(math.clamp(ratio * 211, 0, 211), 9), Color = winhvh.theme.accent, Visible = visible})
+        slider.text = self.menu:draw("Text", {Position = slider.buttonoutline.Position + v2(2, -15), Size = 14, Color = winhvh.theme.text, Text = text, Visible = visible}, "text")
+        slider.valuetext = self.menu:draw("Text", {Position = slider.button.Position + v2(106, -3), Size = 14, Center = true, Color = winhvh.theme.text, Text = tostring(default) .. slider.suffix, Visible = visible}, "text")
         slider.callback = callback
         slider.SetValue = setSliderValue
         self.bgOffset += v2(0, slider.height)
@@ -1447,13 +1449,13 @@ do -- UI Library
         if name then
             self.section.flags[name] = color
         end
-        default = default or wapus.theme.accent
+        default = default or winhvh.theme.accent
         color.name = name or "Color"
         color.callback = callback
         color.toggle = self
         color.value = default
         color.AddColorPicker = addColorToToggle
-        color.buttonoutline = self.menu:draw("Square", {Position = self.buttonoutline.Position + v2(187 - self.additions, 1), Size = v2(26, 12), Color = wapus.theme.outline, Visible = visible}, "outline")
+        color.buttonoutline = self.menu:draw("Square", {Position = self.buttonoutline.Position + v2(187 - self.additions, 1), Size = v2(26, 12), Color = winhvh.theme.outline, Visible = visible}, "outline")
         color.buttonbackground = self.menu:draw("Square", {Position = color.buttonoutline.Position + v2(1, 1), Size = v2(24, 10), Color = darken(default, 0.4), Visible = visible}, "accent")
         color.button = self.menu:draw("Square", {Position = color.buttonoutline.Position + v2(3, 3), Size = v2(20, 6), Color = default, Visible = visible}, "accent")
         color.SetValue = setColorValue
@@ -1509,9 +1511,9 @@ do -- UI Library
             keybind.value = default
             keybind.menu = self.menu
             keybind.AddColorPicker = addColorToToggle
-            keybind.buttonoutline = self.menu:draw("Square", {Position = self.buttonoutline.Position + v2(171 - self.additions, 0), Size = v2(42, 14), Color = wapus.theme.outline, Visible = visible}, "outline")
-            keybind.button = self.menu:draw("Square", {Position = keybind.buttonoutline.Position + v2(1, 1), Size = v2(40, 12), Color = wapus.theme.hidden, Visible = visible}, "hidden")
-            keybind.text = self.menu:draw("Text", {Position = keybind.button.Position + v2(21, -2), Size = 14, Color = wapus.theme.text, Text = default, Center = true, Visible = visible}, "text")
+            keybind.buttonoutline = self.menu:draw("Square", {Position = self.buttonoutline.Position + v2(171 - self.additions, 0), Size = v2(42, 14), Color = winhvh.theme.outline, Visible = visible}, "outline")
+            keybind.button = self.menu:draw("Square", {Position = keybind.buttonoutline.Position + v2(1, 1), Size = v2(40, 12), Color = winhvh.theme.hidden, Visible = visible}, "hidden")
+            keybind.text = self.menu:draw("Text", {Position = keybind.button.Position + v2(21, -2), Size = 14, Color = winhvh.theme.text, Text = default, Center = true, Visible = visible}, "text")
             keybind.SetValue = setKeybindValue
             self.keybind = keybind
             self.additions += 49
@@ -1527,7 +1529,7 @@ do -- UI Library
 
     local function setToggleValue(self, value)
         self.value = value
-        self.button:SetColor(value and {wapus.theme.accent, darken(wapus.theme.accent, 0.25)} or {wapus.theme.lightbackground, wapus.theme.background})
+        self.button:SetColor(value and {winhvh.theme.accent, darken(winhvh.theme.accent, 0.25)} or {winhvh.theme.lightbackground, winhvh.theme.background})
 
         if self.callback then
             self.callback(value)
@@ -1553,17 +1555,17 @@ do -- UI Library
         toggle.height = 15
         toggle.additions = 0
         toggle.value = default == true
-        toggle.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 3), Size = v2(11, 11), Color = wapus.theme.outline, Visible = visible}, "outline")
-        --toggle.button = self.menu:draw("Square", {Position = toggle.buttonoutline.Position + v2(1, 1), Size = v2(9, 9), Color = default and wapus.theme.accent or wapus.theme.background, Visible = visible}, "background")
-        toggle.button = modifyDrawing(self.menu:gradient({wapus.theme.accent, darken(wapus.theme.accent, 0.25)}, 3), {Position = toggle.buttonoutline.Position + v2(1, 1), Size = v2(9, 9), Color = default and wapus.theme.accent or wapus.theme.background, Visible = visible})
-        toggle.text = self.menu:draw("Text", {Position = toggle.buttonoutline.Position + v2(16, -2), Size = 14, Color = wapus.theme.text, Text = text, Visible = visible}, "text")
+        toggle.buttonoutline = self.menu:draw("Square", {Position = container + v2(0, 3), Size = v2(11, 11), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        --toggle.button = self.menu:draw("Square", {Position = toggle.buttonoutline.Position + v2(1, 1), Size = v2(9, 9), Color = default and winhvh.theme.accent or winhvh.theme.background, Visible = visible}, "background")
+        toggle.button = modifyDrawing(self.menu:gradient({winhvh.theme.accent, darken(winhvh.theme.accent, 0.25)}, 3), {Position = toggle.buttonoutline.Position + v2(1, 1), Size = v2(9, 9), Color = default and winhvh.theme.accent or winhvh.theme.background, Visible = visible})
+        toggle.text = self.menu:draw("Text", {Position = toggle.buttonoutline.Position + v2(16, -2), Size = 14, Color = winhvh.theme.text, Text = text, Visible = visible}, "text")
         toggle.AddKeyBind = addKeybindToToggle
         toggle.AddColorPicker = addColorToToggle
         toggle.callback = callback
         toggle.SetValue = setToggleValue
         self.bgOffset += v2(0, toggle.height)
         insert(self.elements, toggle)
-        toggle.button:SetColor(not default and {wapus.theme.lightbackground, wapus.theme.background})
+        toggle.button:SetColor(not default and {winhvh.theme.lightbackground, winhvh.theme.background})
         return toggle
     end
 
@@ -1575,9 +1577,9 @@ do -- UI Library
         self.menu.sectionIndexes[text] = section
         section.background = mainSection.background
         section.index = #self.sections + 1
-        section.buttonoutline = self.menu:draw("Square", {Position = lastButton.Position + v2(lastButton.Size.X + 1, 0), Color = wapus.theme.outline, Visible = visible}, "outline")
-        section.button = self.menu:draw("Square", {Position = section.buttonoutline.Position + v2(0, 0), Color = wapus.theme.hidden, Visible = visible}, "hidden")
-        section.text = self.menu:draw("Text", {Size = 14, Color = wapus.theme.hiddenText, Center = true, Text = text, Visible = visible}, "text")
+        section.buttonoutline = self.menu:draw("Square", {Position = lastButton.Position + v2(lastButton.Size.X + 1, 0), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        section.button = self.menu:draw("Square", {Position = section.buttonoutline.Position + v2(0, 0), Color = winhvh.theme.hidden, Visible = visible}, "hidden")
+        section.text = self.menu:draw("Text", {Size = 14, Color = winhvh.theme.hiddenText, Center = true, Text = text, Visible = visible}, "text")
         section.button.Size = v2(10 + section.text.TextBounds.X, 20)
         section.buttonoutline.Size = v2(11 + section.text.TextBounds.X, 21)
         section.text.Position = section.button.Position + v2(5 + section.text.TextBounds.X * 0.5, 4)
@@ -1603,21 +1605,21 @@ do -- UI Library
         local side = right and "right" or "left"
         self.menu.sectionIndexes[text] = section
         height = height == "half" and 257 or height == "whole" and 518 or height == "third" and 170 or height
-        section.outline = self.menu:draw("Square", {Size = v2(231, height), Position = self.menu.sectionbg.Position + v2(7 + (right and 235 or 0), 3 + self[side]), Color = wapus.theme.outline, Visible = visible}, "outline")
-        section.highlightoutline = self.menu:draw("Square", {Size = v2(229, 4), Position = section.outline.Position + v2(1, 1), Color = wapus.theme.outline, Visible = visible}, "outline")
-        section.highlight = modifyDrawing(self.menu:gradient({wapus.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), wapus.theme.accent, darken(wapus.theme.accent, 0.4)}, 3), {Size = v2(229, 3), Position = section.highlightoutline.Position, Color = wapus.theme.accent, Visible = visible})
-        section.buttons = self.menu:draw("Square", {Size = v2(229, 20), Position = section.highlightoutline.Position + v2(0, 4), Color = wapus.theme.hidden, Visible = visible}, "hidden")
-        section.buttonoutline = self.menu:draw("Square", {Position = section.highlightoutline.Position + v2(0, 4), Color = wapus.theme.outline, Visible = visible}, "outline")
-        section.button = self.menu:draw("Square", {Position = section.highlightoutline.Position + v2(0, 4), Color = wapus.theme.background, Visible = visible}, "background")
-        section.buttonbackground = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 8), {Position = section.highlightoutline.Position + v2(0, 4), Color = wapus.theme.background, Visible = visible})
-        section.text = self.menu:draw("Text", {Size = 14, Color = wapus.theme.text, Center = true, Text = text, Visible = visible}, "text")
+        section.outline = self.menu:draw("Square", {Size = v2(231, height), Position = self.menu.sectionbg.Position + v2(7 + (right and 235 or 0), 3 + self[side]), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        section.highlightoutline = self.menu:draw("Square", {Size = v2(229, 4), Position = section.outline.Position + v2(1, 1), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        section.highlight = modifyDrawing(self.menu:gradient({winhvh.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), winhvh.theme.accent, darken(winhvh.theme.accent, 0.4)}, 3), {Size = v2(229, 3), Position = section.highlightoutline.Position, Color = winhvh.theme.accent, Visible = visible})
+        section.buttons = self.menu:draw("Square", {Size = v2(229, 20), Position = section.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.hidden, Visible = visible}, "hidden")
+        section.buttonoutline = self.menu:draw("Square", {Position = section.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        section.button = self.menu:draw("Square", {Position = section.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.background, Visible = visible}, "background")
+        section.buttonbackground = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 8), {Position = section.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.background, Visible = visible})
+        section.text = self.menu:draw("Text", {Size = 14, Color = winhvh.theme.text, Center = true, Text = text, Visible = visible}, "text")
         section.button.Size = v2(10 + section.text.TextBounds.X, 21)
         section.buttonbackground.Size = section.button.Size
         section.buttonbackground.ZIndex = 2
         section.buttonoutline.Size = v2(11 + section.text.TextBounds.X, 21)
         section.text.Position = section.buttons.Position + v2(5 + section.text.TextBounds.X * 0.5, 4)
         section.text.ZIndex = 3
-        section.background = self.menu:draw("Square", {Size = v2(229, height - 27), Position = section.outline.Position + v2(1, 26), Color = wapus.theme.background, Visible = visible}, "background")
+        section.background = self.menu:draw("Square", {Size = v2(229, height - 27), Position = section.outline.Position + v2(1, 26), Color = winhvh.theme.background, Visible = visible}, "background")
         section.menu = self.menu
         section.tab = self
         section.name = text
@@ -1665,9 +1667,9 @@ do -- UI Library
                     local playerdrawings = drawings[playerIndex]
                     playerdrawings.name.Text = player.Name
                     playerdrawings.team.Text = isteamed and player.Team.Name or "None"
-                    playerdrawings.team.Color = isteamed and player.TeamColor.Color or wapus.theme.text
+                    playerdrawings.team.Color = isteamed and player.TeamColor.Color or winhvh.theme.text
                     playerdrawings.status.Text = islocal and "Local Player" or status[player] or "None"
-                    playerdrawings.status.Color = islocal and Color3.new(0.407843, 0, 0.87451) or wapus.theme.text
+                    playerdrawings.status.Color = islocal and Color3.new(0.407843, 0, 0.87451) or winhvh.theme.text
                 end
             end
         end
@@ -1746,59 +1748,59 @@ do -- UI Library
         playerlist.status = callbacks.status
         playerlist.votekick = callbacks.votekick
         playerlist.spectate = callbacks.spectate
-        playerlist.outline = self.menu:draw("Square", {Size = v2(231 + 235, height), Position = self.menu.sectionbg.Position + v2(7, 3), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.highlightoutline = self.menu:draw("Square", {Size = v2(229 + 235, 4), Position = playerlist.outline.Position + v2(1, 1), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.highlight = modifyDrawing(self.menu:gradient({wapus.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), wapus.theme.accent, darken(wapus.theme.accent, 0.4)}, 3), {Size = v2(229 + 235, 3), Position = playerlist.highlightoutline.Position, Color = wapus.theme.accent, Visible = visible})
-        playerlist.buttons = self.menu:draw("Square", {Size = v2(229 + 235, 20), Position = playerlist.highlightoutline.Position + v2(0, 4), Color = wapus.theme.hidden, Visible = visible}, "hidden")
-        playerlist.buttonoutline = self.menu:draw("Square", {Position = playerlist.highlightoutline.Position + v2(0, 4), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.button = self.menu:draw("Square", {Position = playerlist.highlightoutline.Position + v2(0, 4), Color = wapus.theme.background, Visible = visible}, "background")
-        playerlist.buttonbackground = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 8), {Position = playerlist.highlightoutline.Position + v2(0, 4), Color = wapus.theme.background, Visible = visible})
-        playerlist.text = self.menu:draw("Text", {Size = 14, Color = wapus.theme.text, Center = true, Text = "Player List", Visible = visible}, "text")
+        playerlist.outline = self.menu:draw("Square", {Size = v2(231 + 235, height), Position = self.menu.sectionbg.Position + v2(7, 3), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.highlightoutline = self.menu:draw("Square", {Size = v2(229 + 235, 4), Position = playerlist.outline.Position + v2(1, 1), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.highlight = modifyDrawing(self.menu:gradient({winhvh.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), winhvh.theme.accent, darken(winhvh.theme.accent, 0.4)}, 3), {Size = v2(229 + 235, 3), Position = playerlist.highlightoutline.Position, Color = winhvh.theme.accent, Visible = visible})
+        playerlist.buttons = self.menu:draw("Square", {Size = v2(229 + 235, 20), Position = playerlist.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.hidden, Visible = visible}, "hidden")
+        playerlist.buttonoutline = self.menu:draw("Square", {Position = playerlist.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.button = self.menu:draw("Square", {Position = playerlist.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.background, Visible = visible}, "background")
+        playerlist.buttonbackground = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 8), {Position = playerlist.highlightoutline.Position + v2(0, 4), Color = winhvh.theme.background, Visible = visible})
+        playerlist.text = self.menu:draw("Text", {Size = 14, Color = winhvh.theme.text, Center = true, Text = "Player List", Visible = visible}, "text")
         playerlist.button.Size = v2(10 + playerlist.text.TextBounds.X, 21)
         playerlist.buttonbackground.Size = playerlist.button.Size
         playerlist.buttonbackground.ZIndex = 2
         playerlist.buttonoutline.Size = v2(11 + playerlist.text.TextBounds.X, 21)
         playerlist.text.Position = playerlist.buttons.Position + v2(5 + playerlist.text.TextBounds.X * 0.5, 4)
         playerlist.text.ZIndex = 3
-        playerlist.background = self.menu:draw("Square", {Size = v2(229 + 235, height - 27), Position = playerlist.outline.Position + v2(1, 26), Color = wapus.theme.background, Visible = visible}, "background")
-        playerlist.playerBoxOutline = self.menu:draw("Square", {Size = v2(229 + 235 - 16, 210), Position = playerlist.outline.Position + v2(9, 26 + 18), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.playerBoxBackground = self.menu:draw("Square", {Size = v2(229 + 235 - 16 - 2, 208), Position = playerlist.outline.Position + v2(10, 26 + 19), Color = wapus.theme.background, Visible = visible}, "background")
-        playerlist.playerPFPOutline = self.menu:draw("Square", {Size = v2(74, 74), Position = playerlist.outline.Position + v2(9, 26 + 18 + 8 + 210), Color = wapus.theme.outline, Visible = visible}, "outline")
+        playerlist.background = self.menu:draw("Square", {Size = v2(229 + 235, height - 27), Position = playerlist.outline.Position + v2(1, 26), Color = winhvh.theme.background, Visible = visible}, "background")
+        playerlist.playerBoxOutline = self.menu:draw("Square", {Size = v2(229 + 235 - 16, 210), Position = playerlist.outline.Position + v2(9, 26 + 18), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.playerBoxBackground = self.menu:draw("Square", {Size = v2(229 + 235 - 16 - 2, 208), Position = playerlist.outline.Position + v2(10, 26 + 19), Color = winhvh.theme.background, Visible = visible}, "background")
+        playerlist.playerPFPOutline = self.menu:draw("Square", {Size = v2(74, 74), Position = playerlist.outline.Position + v2(9, 26 + 18 + 8 + 210), Color = winhvh.theme.outline, Visible = visible}, "outline")
         playerlist.playerPFP = self.menu:draw("Image", {Size = v2(72, 72), Position = playerlist.outline.Position + v2(10, 26 + 18 + 8 + 211), Data = blankData, Visible = visible}, "outline")
-        --playerlist.playerPFP = self.menu:draw("Square", {Size = v2(72, 72), Position = playerlist.outline.Position + v2(10, 26 + 18 + 8 + 211), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.statusbuttonoutline = self.menu:draw("Square", {Size = v2(149, 20), Position = playerlist.outline.Position + v2(308, 26 + 18 + 210 + 22), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.statusbutton = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Size = v2(147, 18), Position = playerlist.outline.Position + v2(309, 26 + 18 + 210 + 23), Visible = visible})
-        playerlist.votekickbuttonoutline = self.menu:draw("Square", {Size = v2(69, 20), Position = playerlist.outline.Position + v2(308, 26 + 18 + 210 + 53), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.votekickbutton = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Size = v2(67, 18), Position = playerlist.outline.Position + v2(309, 26 + 18 + 210 + 54), Visible = visible})
-        playerlist.spectatebuttonoutline = self.menu:draw("Square", {Size = v2(69, 20), Position = playerlist.outline.Position + v2(308 + 80, 26 + 18 + 210 + 53), Color = wapus.theme.outline, Visible = visible}, "outline")
-        playerlist.spectatebutton = modifyDrawing(self.menu:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Size = v2(67, 18), Position = playerlist.outline.Position + v2(308 + 81, 26 + 18 + 210 + 54), Visible = visible})
+        --playerlist.playerPFP = self.menu:draw("Square", {Size = v2(72, 72), Position = playerlist.outline.Position + v2(10, 26 + 18 + 8 + 211), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.statusbuttonoutline = self.menu:draw("Square", {Size = v2(149, 20), Position = playerlist.outline.Position + v2(308, 26 + 18 + 210 + 22), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.statusbutton = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Size = v2(147, 18), Position = playerlist.outline.Position + v2(309, 26 + 18 + 210 + 23), Visible = visible})
+        playerlist.votekickbuttonoutline = self.menu:draw("Square", {Size = v2(69, 20), Position = playerlist.outline.Position + v2(308, 26 + 18 + 210 + 53), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.votekickbutton = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Size = v2(67, 18), Position = playerlist.outline.Position + v2(309, 26 + 18 + 210 + 54), Visible = visible})
+        playerlist.spectatebuttonoutline = self.menu:draw("Square", {Size = v2(69, 20), Position = playerlist.outline.Position + v2(308 + 80, 26 + 18 + 210 + 53), Color = winhvh.theme.outline, Visible = visible}, "outline")
+        playerlist.spectatebutton = modifyDrawing(self.menu:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Size = v2(67, 18), Position = playerlist.outline.Position + v2(308 + 81, 26 + 18 + 210 + 54), Visible = visible})
 
-        playerlist.nametext = self.menu:draw("Text", {Position = playerlist.playerBoxOutline.Position + v2(4, -17), Size = 14, Color = wapus.theme.text, Text = "Name", Visible = visible}, "text")
-        playerlist.teamtext = self.menu:draw("Text", {Position = playerlist.playerBoxOutline.Position + v2(4 + 148, -17), Size = 14, Color = wapus.theme.text, Text = "Team", Visible = visible}, "text")
-        playerlist.statuslabeltext = self.menu:draw("Text", {Position = playerlist.playerBoxOutline.Position + v2(4 + 298, -17), Size = 14, Color = wapus.theme.text, Text = "Status", Visible = visible}, "text")
-        playerlist.playertext = self.menu:draw("Text", {Position = playerlist.playerPFP.Position + v2(78, -2), Size = 14, Color = wapus.theme.text, Text = "No Player Selected", Visible = visible}, "text")
-        playerlist.playerstatustext = self.menu:draw("Text", {Position = playerlist.statusbuttonoutline.Position + v2(-1, -17), Size = 14, Color = wapus.theme.text, Text = "Player Status", Visible = visible}, "text")
-        playerlist.statustext = self.menu:draw("Text", {Position = playerlist.playerstatustext.Position + v2(6, 19), Size = 14, Color = wapus.theme.text, Text = "None", Visible = visible}, "text")
-        playerlist.droptext = self.menu:draw("Text", {Position = playerlist.playerstatustext.Position + v2(137, 20), Size = 14, Color = wapus.theme.text, Text = "-", Visible = visible}, "text")
-        playerlist.votekicktext = self.menu:draw("Text", {Position = playerlist.votekickbutton.Position + v2(33, 1), Size = 14, Center = true, Color = wapus.theme.text, Text = "Votekick", Visible = visible}, "text")
-        playerlist.spectatetext = self.menu:draw("Text", {Position = playerlist.spectatebutton.Position + v2(33, 1), Size = 14, Center = true, Color = wapus.theme.text, Text = "Spectate", Visible = visible}, "text")
+        playerlist.nametext = self.menu:draw("Text", {Position = playerlist.playerBoxOutline.Position + v2(4, -17), Size = 14, Color = winhvh.theme.text, Text = "Name", Visible = visible}, "text")
+        playerlist.teamtext = self.menu:draw("Text", {Position = playerlist.playerBoxOutline.Position + v2(4 + 148, -17), Size = 14, Color = winhvh.theme.text, Text = "Team", Visible = visible}, "text")
+        playerlist.statuslabeltext = self.menu:draw("Text", {Position = playerlist.playerBoxOutline.Position + v2(4 + 298, -17), Size = 14, Color = winhvh.theme.text, Text = "Status", Visible = visible}, "text")
+        playerlist.playertext = self.menu:draw("Text", {Position = playerlist.playerPFP.Position + v2(78, -2), Size = 14, Color = winhvh.theme.text, Text = "No Player Selected", Visible = visible}, "text")
+        playerlist.playerstatustext = self.menu:draw("Text", {Position = playerlist.statusbuttonoutline.Position + v2(-1, -17), Size = 14, Color = winhvh.theme.text, Text = "Player Status", Visible = visible}, "text")
+        playerlist.statustext = self.menu:draw("Text", {Position = playerlist.playerstatustext.Position + v2(6, 19), Size = 14, Color = winhvh.theme.text, Text = "None", Visible = visible}, "text")
+        playerlist.droptext = self.menu:draw("Text", {Position = playerlist.playerstatustext.Position + v2(137, 20), Size = 14, Color = winhvh.theme.text, Text = "-", Visible = visible}, "text")
+        playerlist.votekicktext = self.menu:draw("Text", {Position = playerlist.votekickbutton.Position + v2(33, 1), Size = 14, Center = true, Color = winhvh.theme.text, Text = "Votekick", Visible = visible}, "text")
+        playerlist.spectatetext = self.menu:draw("Text", {Position = playerlist.spectatebutton.Position + v2(33, 1), Size = 14, Center = true, Color = winhvh.theme.text, Text = "Spectate", Visible = visible}, "text")
 
-        playerlist.carrot = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(437, -1), Size = 14, Outline = false, Color = wapus.theme.accent, Text = "^", Visible = visible}, "accent")
-        playerlist.tinyv = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(437, 195), Size = 11, Outline = false, Color = wapus.theme.accent, Text = "v", Visible = visible}, "accent")
+        playerlist.carrot = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(437, -1), Size = 14, Outline = false, Color = winhvh.theme.accent, Text = "^", Visible = visible}, "accent")
+        playerlist.tinyv = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(437, 195), Size = 11, Outline = false, Color = winhvh.theme.accent, Text = "v", Visible = visible}, "accent")
 
         playerlist.playerdrawings = {}
         for playerIndex = 1, 9 do
             local drawinglist = {}
 
             if playerIndex ~= 9 then
-                drawinglist.sectionline = self.menu:draw("Square", {Size = v2(438, 1), Position = playerlist.playerBoxBackground.Position + v2(4, 23 * playerIndex), Color = wapus.theme.outline, Visible = visible}, "outline")
+                drawinglist.sectionline = self.menu:draw("Square", {Size = v2(438, 1), Position = playerlist.playerBoxBackground.Position + v2(4, 23 * playerIndex), Color = winhvh.theme.outline, Visible = visible}, "outline")
             end
 
-            drawinglist.teamline = self.menu:draw("Square", {Size = v2(1, playerIndex ~= 9 and 16 or 17), Position = playerlist.playerBoxBackground.Position + v2(148, 23 * (playerIndex - 1) + 4), Color = wapus.theme.outline, Visible = visible}, "outline")
-            drawinglist.statusline = self.menu:draw("Square", {Size = v2(1, playerIndex ~= 9 and 16 or 17), Position = playerlist.playerBoxBackground.Position + v2(298, 23 * (playerIndex - 1) + 4), Color = wapus.theme.outline, Visible = visible}, "outline")
-            drawinglist.name = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(4, 23 * (playerIndex - 1) + 5), Size = 14, Color = wapus.theme.text, Text = "", Visible = visible}, "text")
-            drawinglist.team = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(152, 23 * (playerIndex - 1) + 5), Size = 14, Color = wapus.theme.text, Text = "", Visible = visible}, "text")
-            drawinglist.status = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(302, 23 * (playerIndex - 1) + 5), Size = 14, Color = wapus.theme.text, Text = "", Visible = visible}, "text")
+            drawinglist.teamline = self.menu:draw("Square", {Size = v2(1, playerIndex ~= 9 and 16 or 17), Position = playerlist.playerBoxBackground.Position + v2(148, 23 * (playerIndex - 1) + 4), Color = winhvh.theme.outline, Visible = visible}, "outline")
+            drawinglist.statusline = self.menu:draw("Square", {Size = v2(1, playerIndex ~= 9 and 16 or 17), Position = playerlist.playerBoxBackground.Position + v2(298, 23 * (playerIndex - 1) + 4), Color = winhvh.theme.outline, Visible = visible}, "outline")
+            drawinglist.name = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(4, 23 * (playerIndex - 1) + 5), Size = 14, Color = winhvh.theme.text, Text = "", Visible = visible}, "text")
+            drawinglist.team = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(152, 23 * (playerIndex - 1) + 5), Size = 14, Color = winhvh.theme.text, Text = "", Visible = visible}, "text")
+            drawinglist.status = self.menu:draw("Text", {Position = playerlist.playerBoxBackground.Position + v2(302, 23 * (playerIndex - 1) + 5), Size = 14, Color = winhvh.theme.text, Text = "", Visible = visible}, "text")
 
             playerlist.playerdrawings[playerIndex] = drawinglist
         end
@@ -1815,7 +1817,7 @@ do -- UI Library
         local tab = {}
         tab.tabIndex = #self.tabs + 1
         tab.button = self["tab" .. tostring(tab.tabIndex)]
-        tab.title = self:draw("Text", {Size = 15, Position = tab.button.Position + v2(48, 11), Color = wapus.theme[tab.tabIndex == self.tabIndex and "text" or "hiddenText"], Text = text, Center = true, Visible = self.open}, "text")
+        tab.title = self:draw("Text", {Size = 15, Position = tab.button.Position + v2(48, 11), Color = winhvh.theme[tab.tabIndex == self.tabIndex and "text" or "hiddenText"], Text = text, Center = true, Visible = self.open}, "text")
         tab.CreateSection = createSection
         tab.CreatePlayerList = createPlayerList
         tab.menu = self
@@ -1847,12 +1849,12 @@ do -- UI Library
         keys.drawCache = {}
         keys.draw = draw
         keys.gradient = gradient
-        keys.outline = keys:draw("Square", {Color = wapus.theme.outline, Visible = true}, "outline")
-        keys.background = keys:draw("Square", {Color = wapus.theme.background, Visible = true}, "background")
-        keys.titlebackground = modifyDrawing(keys:gradient({wapus.theme.lightbackground, wapus.theme.background}, 7), {Color = wapus.theme.accent, Visible = true})
-        keys.highlightoutline = keys:draw("Square", {Color = wapus.theme.outline, Visible = true}, "outline")
-        keys.highlight = modifyDrawing(keys:gradient({wapus.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), wapus.theme.accent, darken(wapus.theme.accent, 0.4)}, 3), {Color = wapus.theme.accent, Visible = true})
-        keys.title = keys:draw("Text", {Size = 16, Color = wapus.theme.text, Text = "Keybinds", Visible = true}, "text")
+        keys.outline = keys:draw("Square", {Color = winhvh.theme.outline, Visible = true}, "outline")
+        keys.background = keys:draw("Square", {Color = winhvh.theme.background, Visible = true}, "background")
+        keys.titlebackground = modifyDrawing(keys:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 7), {Color = winhvh.theme.accent, Visible = true})
+        keys.highlightoutline = keys:draw("Square", {Color = winhvh.theme.outline, Visible = true}, "outline")
+        keys.highlight = modifyDrawing(keys:gradient({winhvh.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), winhvh.theme.accent, darken(winhvh.theme.accent, 0.4)}, 3), {Color = winhvh.theme.accent, Visible = true})
+        keys.title = keys:draw("Text", {Size = 16, Color = winhvh.theme.text, Text = "Keybinds", Visible = true}, "text")
 
         local function updateKeybinds()
             if keys.keybinds then
@@ -1871,7 +1873,7 @@ do -- UI Library
                     text = text .. " [ " .. keyName .. " ]"
                 end
 
-                insert(newkeybinds, {keys:draw("Text", {Size = 16, Color = wapus.theme.text, Text = text, Visible = true}, "text"), keybind})
+                insert(newkeybinds, {keys:draw("Text", {Size = 16, Color = winhvh.theme.text, Text = text, Visible = true}, "text"), keybind})
             end
 
             keys.keybinds = newkeybinds
@@ -1925,7 +1927,7 @@ do -- UI Library
         updateKeyList()
     end
 
-    function wapus:CreateMenu(title, visible, index)
+    function winhvh:CreateMenu(title, visible, index)
         if visible == nil then
             visible = true
         end
@@ -2172,7 +2174,7 @@ do -- UI Library
                 return
             end
 
-            for _, menuData in wapus.menus do
+            for _, menuData in winhvh.menus do
                 for _, keyData in menuData.keybinds do
                     if key == keyData[1] then
                         keyData[2].toggle:SetValue(not keyData[2].toggle.value)
@@ -2185,14 +2187,14 @@ do -- UI Library
             end
 
             local clockTime = os.clock()
-            if input.KeyCode == Enum.KeyCode[wapus.toggleKeybind] and clockTime - lastToggle > fadeDuration * 2 and not dragging and not sliding and not dropping and not picking then
-                wapus.open = not wapus.open
+            if input.KeyCode == Enum.KeyCode[winhvh.toggleKeybind] and clockTime - lastToggle > fadeDuration * 2 and not dragging and not sliding and not dropping and not picking then
+                winhvh.open = not winhvh.open
                 lastToggle = clockTime
 
-                for _, menu in wapus.menus do
-                    local trans = (wapus.open and 0 or 1) --menu.background.Transparency
+                for _, menu in winhvh.menus do
+                    local trans = (winhvh.open and 0 or 1) --menu.background.Transparency
                     local stepFactor = 1 / fadeSteps
-                    local step = stepFactor * (wapus.open and 1 or -1)
+                    local step = stepFactor * (winhvh.open and 1 or -1)
                     local stepDur = stepFactor * fadeDuration
                     local drawings = {
                         menu.outline,
@@ -2213,7 +2215,7 @@ do -- UI Library
                         menu.titlebackground,
                         menu.tabbackground
                     }
-                    menu.open = wapus.open
+                    menu.open = winhvh.open
 
                     if menu.updateCache then
                         menu.updateCache()
@@ -2228,7 +2230,7 @@ do -- UI Library
                     end
 
                     task.spawn(function()
-                        if wapus.open then
+                        if winhvh.open then
                             for _, drawing in drawings do
                                 drawing.Visible = true
                             end
@@ -2244,7 +2246,7 @@ do -- UI Library
                             task.wait(stepDur)
                         end
 
-                        if not wapus.open then
+                        if not winhvh.open then
                             for _, drawing in drawings do
                                 drawing.Visible = false
                             end
@@ -2278,7 +2280,7 @@ do -- UI Library
         local clicked = down and not wasDown
         wasDown = down
 
-        if wapus.open then
+        if winhvh.open then
             if sliding then
                 if down then
                     local relpos = userInputService:GetMouseLocation().X - sliding.button.Position.X
@@ -2472,7 +2474,7 @@ do -- UI Library
                 return
             end
 
-            for _, menuData in wapus.menus do
+            for _, menuData in winhvh.menus do
                 if menuData.open then
                     local mouse = userInputService:GetMouseLocation()
                     local onMenu = checkDrawing(mouse, menuData.outline)
@@ -2505,14 +2507,14 @@ do -- UI Library
                                 local newIndex = math.clamp(math.ceil((mouse.X - sectionbg.X) / 96), 1, 5)
                                 local oldTab = menuData.tabs[menuData.tabIndex]
                                 local newTab = menuData.tabs[newIndex]
-                                oldTab.title.Color = wapus.theme.hiddenText
-                                newTab.title.Color = wapus.theme.text
+                                oldTab.title.Color = winhvh.theme.hiddenText
+                                newTab.title.Color = winhvh.theme.text
                                 local oldButton = menuData["tab" .. tostring(menuData.tabIndex)]
                                 local newButton = menuData["tab" .. tostring(newIndex)]
                                 oldButton.Size = oldButton.Size - v2(0, 1)
                                 newButton.Size = newButton.Size + v2(0, 1)
-                                oldButton.Color = wapus.theme.hidden
-                                newButton.Color = wapus.theme.background
+                                oldButton.Color = winhvh.theme.hidden
+                                newButton.Color = winhvh.theme.background
                                 menuData.tabbackground.Position = newButton.Position
                                 menuData.tabbackground.Size = newButton.Size
 
@@ -2562,9 +2564,9 @@ do -- UI Library
                                                     local statusName = statusIndex == 1 and "None" or sectionData.statuslist[statusIndex - 1]
                                                     local buttonData = {}
                                                     buttonData.status = statusName
-                                                    buttonData.outline = statusdropping:draw("Square", {Size = v2(149, 20), Position = statusButton.Position + v2(0, 19 * statusIndex), Color = wapus.theme.outline, Visible = true, ZIndex = 4}, "outline")
-                                                    buttonData.button = statusdropping:draw("Square", {Size = v2(147, 18), Position = buttonData.outline.Position + v2(1, 1), Color = wapus.theme.background, Visible = true, ZIndex = 4}, "outline")
-                                                    buttonData.text = statusdropping:draw("Text", {Position = buttonData.button.Position + v2(4, 1), Size = 14, Color = wapus.theme.text, Text = statusName, Visible = true, ZIndex = 4}, "text")
+                                                    buttonData.outline = statusdropping:draw("Square", {Size = v2(149, 20), Position = statusButton.Position + v2(0, 19 * statusIndex), Color = winhvh.theme.outline, Visible = true, ZIndex = 4}, "outline")
+                                                    buttonData.button = statusdropping:draw("Square", {Size = v2(147, 18), Position = buttonData.outline.Position + v2(1, 1), Color = winhvh.theme.background, Visible = true, ZIndex = 4}, "outline")
+                                                    buttonData.text = statusdropping:draw("Text", {Position = buttonData.button.Position + v2(4, 1), Size = 14, Color = winhvh.theme.text, Text = statusName, Visible = true, ZIndex = 4}, "text")
                                                     statusdropping.buttons[statusIndex] = buttonData
                                                 end
                                             end
@@ -2576,12 +2578,12 @@ do -- UI Library
                                             for sectionIndex, section in sectionData.sections do
                                                 if checkDrawing(mouse, section.button) then
                                                     local oldSec = sectionData.sections[sectionData.sectionIndex]
-                                                    oldSec.text.Color = wapus.theme.hiddenText
-                                                    section.text.Color = wapus.theme.text
+                                                    oldSec.text.Color = winhvh.theme.hiddenText
+                                                    section.text.Color = winhvh.theme.text
                                                     oldSec.button.Size = oldSec.button.Size - v2(0, 1)
                                                     section.button.Size = section.button.Size + v2(0, 1)
-                                                    oldSec.button.Color = wapus.theme.hidden
-                                                    section.button.Color = wapus.theme.background
+                                                    oldSec.button.Color = winhvh.theme.hidden
+                                                    section.button.Color = winhvh.theme.background
                                                     sectionData.buttonbackground.Position = section.button.Position
                                                     sectionData.buttonbackground.Size = section.button.Size
 
@@ -2622,24 +2624,24 @@ do -- UI Library
                                                                     draw = draw,
                                                                     gradient = gradient
                                                                 } -- i wanna kms
-                                                                picker.outline = picker:draw("Square", {Position = color.toggle.buttonoutline.Position + v2(-57, -8), Size = v2(275, 217), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
-                                                                picker.background = picker:draw("Square", {Position = picker.outline.Position + v2(1, 1), Size = v2(273, 215), Color = wapus.theme.background, Visible = true, ZIndex = 4})
-                                                                picker.highlightbackground = picker:draw("Square", {Position = picker.outline.Position + v2(1, 1), Size = v2(273, 4), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
-                                                                picker.highlight = modifyDrawing(picker:gradient({wapus.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), wapus.theme.accent, darken(wapus.theme.accent, 0.4)}, 3), {Position = picker.highlightbackground.Position, Size = v2(273, 3), Visible = true, ZIndex = 4})
-                                                                picker.titlebackground = modifyDrawing(picker:gradient({wapus.theme.lightbackground, wapus.theme.background}, 6), {Size = v2(273, 17), Position = picker.background.Position + v2(0, 4), Visible = true, ZIndex = 4})
-                                                                picker.title = picker:draw("Text", {Position = picker.background.Position + v2(3, 3), Size = 14, Color = wapus.theme.text, Text = color.name, Visible = true, ZIndex = 4})
-                                                                picker.hsvOutline = picker:draw("Square", {Position = picker.background.Position + v2(7, 19), Size = v2(202 - 18 - 16, 168), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
-                                                                picker.hueOutline = picker:draw("Square", {Position = picker.hsvOutline.Position + v2(7 + picker.hsvOutline.Size.X, 0), Size = v2(12, 168), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.outline = picker:draw("Square", {Position = color.toggle.buttonoutline.Position + v2(-57, -8), Size = v2(275, 217), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.background = picker:draw("Square", {Position = picker.outline.Position + v2(1, 1), Size = v2(273, 215), Color = winhvh.theme.background, Visible = true, ZIndex = 4})
+                                                                picker.highlightbackground = picker:draw("Square", {Position = picker.outline.Position + v2(1, 1), Size = v2(273, 4), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.highlight = modifyDrawing(picker:gradient({winhvh.theme.accent:Lerp(Color3.new(1, 1, 1), 0.1), winhvh.theme.accent, darken(winhvh.theme.accent, 0.4)}, 3), {Position = picker.highlightbackground.Position, Size = v2(273, 3), Visible = true, ZIndex = 4})
+                                                                picker.titlebackground = modifyDrawing(picker:gradient({winhvh.theme.lightbackground, winhvh.theme.background}, 6), {Size = v2(273, 17), Position = picker.background.Position + v2(0, 4), Visible = true, ZIndex = 4})
+                                                                picker.title = picker:draw("Text", {Position = picker.background.Position + v2(3, 3), Size = 14, Color = winhvh.theme.text, Text = color.name, Visible = true, ZIndex = 4})
+                                                                picker.hsvOutline = picker:draw("Square", {Position = picker.background.Position + v2(7, 19), Size = v2(202 - 18 - 16, 168), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.hueOutline = picker:draw("Square", {Position = picker.hsvOutline.Position + v2(7 + picker.hsvOutline.Size.X, 0), Size = v2(12, 168), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.hue = picker:draw("Image", {Position = picker.hsvOutline.Position + v2(8 + picker.hsvOutline.Size.X, 1), Size = v2(10, 166), Data = hueData, Visible = true, ZIndex = 4})
-                                                                picker.valueOutline = picker:draw("Square", {Position = picker.background.Position + v2(7, 195), Size = v2(202 - 18 - 16, 12), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.valueOutline = picker:draw("Square", {Position = picker.background.Position + v2(7, 195), Size = v2(202 - 18 - 16, 12), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.valuebar = picker:draw("Image", {Position = picker.background.Position + v2(8, 196), Size = v2(200 - 18 - 16, 10), Data = valueData, Visible = true, ZIndex = 4})
-                                                                picker.newtext = picker:draw("Text", {Position = picker.hueOutline.Position + v2(19, -2), Size = 14, Color = wapus.theme.text, Text = "New Color", Visible = true, ZIndex = 4})
-                                                                picker.newOutline = picker:draw("Square", {Position = picker.newtext.Position + v2(0, 17), Size = v2(65, 35), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.newtext = picker:draw("Text", {Position = picker.hueOutline.Position + v2(19, -2), Size = 14, Color = winhvh.theme.text, Text = "New Color", Visible = true, ZIndex = 4})
+                                                                picker.newOutline = picker:draw("Square", {Position = picker.newtext.Position + v2(0, 17), Size = v2(65, 35), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.newColor = picker:draw("Square", {Position = picker.newtext.Position + v2(1, 18), Size = v2(63, 33), Color = color.value, Visible = true, ZIndex = 4})
-                                                                picker.oldtext = picker:draw("Text", {Position = picker.hueOutline.Position + v2(19, 52), Size = 14, Color = wapus.theme.text, Text = "Old Color", Visible = true, ZIndex = 4})
-                                                                picker.oldOutline = picker:draw("Square", {Position = picker.oldtext.Position + v2(0, 17), Size = v2(65, 35), Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.oldtext = picker:draw("Text", {Position = picker.hueOutline.Position + v2(19, 52), Size = 14, Color = winhvh.theme.text, Text = "Old Color", Visible = true, ZIndex = 4})
+                                                                picker.oldOutline = picker:draw("Square", {Position = picker.oldtext.Position + v2(0, 17), Size = v2(65, 35), Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.oldColor = picker:draw("Square", {Position = picker.oldtext.Position + v2(1, 18), Size = v2(63, 33), Color = color.value, Visible = true, ZIndex = 4})
-                                                                picker.applytext = picker:draw("Text", {Position = picker.hueOutline.Position + v2(27, 175), Size = 14, Color = wapus.theme.text, Text = "[  Apply  ]", Visible = true, ZIndex = 4})
+                                                                picker.applytext = picker:draw("Text", {Position = picker.hueOutline.Position + v2(27, 175), Size = 14, Color = winhvh.theme.text, Text = "[  Apply  ]", Visible = true, ZIndex = 4})
                                                                 picker.colordrawings = {}
 
                                                                 local h, s, v = color.value:ToHSV()
@@ -2672,11 +2674,11 @@ do -- UI Library
                                                                 end
 
 
-                                                                picker.hsvButtonOutline = picker:draw("Square", {Position = startPos + v2(s * 166 - 2, (1 - v) * 166 - 2), Size = v2(5, 5), Filled = false, Thickness = 1, Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.hsvButtonOutline = picker:draw("Square", {Position = startPos + v2(s * 166 - 2, (1 - v) * 166 - 2), Size = v2(5, 5), Filled = false, Thickness = 1, Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.hsvButton = picker:draw("Square", {Position = picker.hsvButtonOutline.Position + v2(1, 1), Size = v2(3, 3), Filled = false, Thickness = 1, Color = Color3.new(1, 1, 1), Visible = true, ZIndex = 4})
-                                                                picker.hueButtonOutline = picker:draw("Square", {Position = picker.hue.Position + v2(-3, (1 - h) * 166 - 3), Size = v2(16, 5), Filled = false, Thickness = 1, Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.hueButtonOutline = picker:draw("Square", {Position = picker.hue.Position + v2(-3, (1 - h) * 166 - 3), Size = v2(16, 5), Filled = false, Thickness = 1, Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.hueButton = picker:draw("Square", {Position = picker.hueButtonOutline.Position + v2(1, 1), Size = v2(14, 3), Filled = false, Thickness = 1, Color = Color3.new(1, 1, 1), Visible = true, ZIndex = 4})
-                                                                picker.valueButtonOutline = picker:draw("Square", {Position = picker.valuebar.Position + v2(v * 166 - 3, -3), Size = v2(5, 16), Filled = false, Thickness = 1, Color = wapus.theme.outline, Visible = true, ZIndex = 4})
+                                                                picker.valueButtonOutline = picker:draw("Square", {Position = picker.valuebar.Position + v2(v * 166 - 3, -3), Size = v2(5, 16), Filled = false, Thickness = 1, Color = winhvh.theme.outline, Visible = true, ZIndex = 4})
                                                                 picker.valueButton = picker:draw("Square", {Position = picker.valueButtonOutline.Position + v2(1, 1), Size = v2(3, 14), Filled = false, Thickness = 1, Color = Color3.new(1, 1, 1), Visible = true, ZIndex = 4})
                                                                 color.picker = picker
                                                                 picking = color
@@ -2693,9 +2695,9 @@ do -- UI Library
 
                                                         for optionIndex = 1, #element.options do
                                                             local newDrawings = {}
-                                                            newDrawings.outline = menuData:draw("Square", {Position = element.buttonoutline.Position + v2(0, optionIndex * 17), Size = v2(213, 18), Color = wapus.theme.outline, Visible = true, ZIndex = 4}, "outline")
-                                                            newDrawings.button = menuData:draw("Square", {Position = newDrawings.outline.Position + v2(1, 1), Size = v2(211, 16), Color = wapus.theme.background, Visible = true, ZIndex = 4}, "background")
-                                                            newDrawings.valuetext = menuData:draw("Text", {Position = newDrawings.button.Position + v2(6, 0), Size = 14, Color = wapus.theme.text, Text = element.options[optionIndex], Visible = true, ZIndex = 4}, "text")
+                                                            newDrawings.outline = menuData:draw("Square", {Position = element.buttonoutline.Position + v2(0, optionIndex * 17), Size = v2(213, 18), Color = winhvh.theme.outline, Visible = true, ZIndex = 4}, "outline")
+                                                            newDrawings.button = menuData:draw("Square", {Position = newDrawings.outline.Position + v2(1, 1), Size = v2(211, 16), Color = winhvh.theme.background, Visible = true, ZIndex = 4}, "background")
+                                                            newDrawings.valuetext = menuData:draw("Text", {Position = newDrawings.button.Position + v2(6, 0), Size = 14, Color = winhvh.theme.text, Text = element.options[optionIndex], Visible = true, ZIndex = 4}, "text")
                                                             element.optionDrawings[optionIndex] = newDrawings
                                                         end
                                                     elseif element.type == "button" then
@@ -2912,7 +2914,7 @@ LPH_JIT_MAX(function() -- Main Cheat
     --astar.interval = 12  --  8 to 16 is good
     --astar.ignorelist = {workspace.Players, camera, ignore, hitboxObjects, backtrackObjects}
 
-    local pathfinding = loadstring(game:HttpGet("https://raw.githubusercontent.com/iRay888/wapus/refs/heads/main/pathfinding.lua"))() -- i didnt make this, i did fix it tho cuz pro
+    local pathfinding = loadstring(game:HttpGet("https://raw.githubusercontent.com/iRay888/winhvh/refs/heads/main/pathfinding.lua"))() -- i didnt make this, i did fix it tho cuz pro
 
     local physicsignore = {workspace.Terrain, ignore, workspace.Players, camera, hitboxObjects, backtrackObjects}
     local raycastparameters = RaycastParams.new()
@@ -3198,8 +3200,8 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local raycastStep = 1 / 30 -- 60 for more accuracy
     local function scanPositions(origin, target, accel, speed, penetration)
-        local origins = getPositionOffsets(origin, target, wapus:GetValue("Rage Bot", "Fire Position Scanning") and wapus:GetValue("Rage Bot", "Fire Position Offset"))
-        local targets = getPositionOffsets(target, origin, wapus:GetValue("Rage Bot", "Hit Position Scanning") and wapus:GetValue("Rage Bot", "Hit Position Offset"))
+        local origins = getPositionOffsets(origin, target, winhvh:GetValue("Rage Bot", "Fire Position Scanning") and winhvh:GetValue("Rage Bot", "Fire Position Offset"))
+        local targets = getPositionOffsets(target, origin, winhvh:GetValue("Rage Bot", "Hit Position Scanning") and winhvh:GetValue("Rage Bot", "Hit Position Offset"))
 
         for originIndex = 1, #origins do
             local newOrigin = origins[originIndex]
@@ -3255,10 +3257,10 @@ LPH_JIT_MAX(function() -- Main Cheat
     local function applyAAAngles(angles)
         local x, y, z = angles.X, angles.Y, angles.Z
 
-        if wapus:GetValue("Anti Aim", "Pitch") then
-            local addition = rad(wapus:GetValue("Anti Aim", "Pitch Amount")) - quarter
+        if winhvh:GetValue("Anti Aim", "Pitch") then
+            local addition = rad(winhvh:GetValue("Anti Aim", "Pitch Amount")) - quarter
 
-            if string.find(string.lower(wapus:GetValue("Anti Aim", "Pitch Mode")), "abs") then
+            if string.find(string.lower(winhvh:GetValue("Anti Aim", "Pitch Mode")), "abs") then
                 x = addition
             else
                 x += addition
@@ -3267,18 +3269,18 @@ LPH_JIT_MAX(function() -- Main Cheat
             x = clamp(x, -quarter, quarter)
         end
 
-        if wapus:GetValue("Anti Aim", "Yaw") then
-            local addition = rad(wapus:GetValue("Anti Aim", "Yaw Amount"))
+        if winhvh:GetValue("Anti Aim", "Yaw") then
+            local addition = rad(winhvh:GetValue("Anti Aim", "Yaw Amount"))
 
-            if string.find(string.lower(wapus:GetValue("Anti Aim", "Yaw Mode")), "rel") then
+            if string.find(string.lower(winhvh:GetValue("Anti Aim", "Yaw Mode")), "rel") then
                 y += addition
             else
                 y = addition
             end
         end
 
-        if wapus:GetValue("Anti Aim", "Spin Bot") then
-            y += (os.clock() - startTime) * math.rad(wapus:GetValue("Anti Aim", "Spin Speed")) * ((wapus:GetValue("Anti Aim", "Spin Direction") == "Left" and 1) or -1)
+        if winhvh:GetValue("Anti Aim", "Spin Bot") then
+            y += (os.clock() - startTime) * math.rad(winhvh:GetValue("Anti Aim", "Spin Speed")) * ((winhvh:GetValue("Anti Aim", "Spin Direction") == "Left" and 1) or -1)
         end
 
         return Vector3.new(x, y, z)
@@ -3314,7 +3316,7 @@ LPH_JIT_MAX(function() -- Main Cheat
         lastRefreshPosition = nil;
     };
     function network:send(name, ...)
-        if wapus:GetValue("Third Person", "Enabled") and wapus:GetValue("Third Person", "Show Character") then
+        if winhvh:GetValue("Third Person", "Enabled") and winhvh:GetValue("Third Person", "Show Character") then
             if name == "spawn" then
                 if not started then
                     started = true
@@ -3343,7 +3345,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                 elseif name == "stance" then
                     local stance = ...
 
-                    if (not wapus:GetValue("Anti Aim", "Enabled (May Cause Despawning)") or not wapus:GetValue("Anti Aim", "Force Stance") or not wapus:GetValue("Third Person", "Apply Anti Aim To Character")) and currentObj then
+                    if (not winhvh:GetValue("Anti Aim", "Enabled (May Cause Despawning)") or not winhvh:GetValue("Anti Aim", "Force Stance") or not winhvh:GetValue("Third Person", "Apply Anti Aim To Character")) and currentObj then
                         currentObj:setStance(stance)
                     end
                 elseif name == "newbullets" then
@@ -3433,7 +3435,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                 end
 
                 return
-            elseif wapus:GetValue("Movement", "Noclip") and newSpawnCache.lastUpdate then
+            elseif winhvh:GetValue("Movement", "Noclip") and newSpawnCache.lastUpdate then
                 local hit = raycast(newSpawnCache.lastUpdate, position - newSpawnCache.lastUpdate, physicsignore)
 
                 if hit then
@@ -3448,19 +3450,19 @@ LPH_JIT_MAX(function() -- Main Cheat
                 return
             end
 
-            if wapus:GetValue('Anti Aim', 'Fake Lag') then
+            if winhvh:GetValue('Anti Aim', 'Fake Lag') then
                 if not fakelag.lastRefreshPosition or not fakelag.lastRefreshTime then
                     fakelag.lastRefreshPosition = position;
                     fakelag.lastRefreshTime = tick();
                 end;
 
 
-                if ((position - fakelag.lastRefreshPosition).Magnitude > wapus:GetValue('Anti Aim', 'Refresh Distance')) or tick() - fakelag.lastRefreshTime > wapus:GetValue('Anti Aim', 'Refresh Rate') then
+                if ((position - fakelag.lastRefreshPosition).Magnitude > winhvh:GetValue('Anti Aim', 'Refresh Distance')) or tick() - fakelag.lastRefreshTime > winhvh:GetValue('Anti Aim', 'Refresh Rate') then
                     fakelag.lastRefreshPosition = position;
                     fakelag.lastRefreshTime = tick();
 
-                    if wapus:GetValue('Anti Aim', 'Randomize Position') then
-                        local xaxis, yaxis, zaxis = wapus:GetValue('Anti Aim', 'X-Axis Factor'), 0, wapus:GetValue('Anti Aim', 'Z-Axis Factor');
+                    if winhvh:GetValue('Anti Aim', 'Randomize Position') then
+                        local xaxis, yaxis, zaxis = winhvh:GetValue('Anti Aim', 'X-Axis Factor'), 0, winhvh:GetValue('Anti Aim', 'Z-Axis Factor');
                         local xoff, yoff, zoff = math.random(-xaxis, xaxis), math.random(-yaxis, yaxis), math.random(-zaxis, zaxis);
 
                         position += Vector3.new(xoff, yoff, zoff);
@@ -3473,12 +3475,12 @@ LPH_JIT_MAX(function() -- Main Cheat
                 fakelag.lastRefreshTime = tick();
             end;
 
-            if wapus:GetValue("Anti Aim", "Enabled (May Cause Despawning)") then
+            if winhvh:GetValue("Anti Aim", "Enabled (May Cause Despawning)") then
                 angles = applyAAAngles(angles)
                 angles2 = angles * 0.99
             end
 
-            --if wapus:GetValue("Rage Bot", "Enabled") and wapus:GetValue("Rage Bot", "Firerate (May Cause Kicking)") then
+            --if winhvh:GetValue("Rage Bot", "Enabled") and winhvh:GetValue("Rage Bot", "Firerate (May Cause Kicking)") then
             --    newSpawnCache.lastOffsetUpdate = newSpawnCache.lastOffsetUpdate or time
             --
             --    if timeLag > 0 and newSpawnCache.latency ~= -timeLag then
@@ -3498,7 +3500,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             --    newSpawnCache.lastOffsetUpdate = time
             --end
 
-            --local fly = false --wapus:GetValue("Movement", "Fly") or (wapus:GetValue("Rage Bot", "Enabled") and wapus:GetValue("Rage Bot", "Firerate (May Cause Kicking)"))
+            --local fly = false --winhvh:GetValue("Movement", "Fly") or (winhvh:GetValue("Rage Bot", "Enabled") and winhvh:GetValue("Rage Bot", "Firerate (May Cause Kicking)"))
             --if fly and newSpawnCache.lastUpdate then
             --    if not newSpawnCache.lastFlyUpdate or ((clockTime - newSpawnCache.lastFlyUpdate) > flyUpdateDelay) then
             --        newSpawnCache.lastFlyUpdate = clockTime
@@ -3511,7 +3513,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             --    return
             --end
 
-            if wapus:GetValue("Movement", "Walk Speed") and newSpawnCache.lastUpdate then -- no patch pls :(
+            if winhvh:GetValue("Movement", "Walk Speed") and newSpawnCache.lastUpdate then -- no patch pls :(
                 send(self, name, newSpawnCache.lastUpdate, angles, angles2, time + newSpawnCache.latency + newSpawnCache.currentAddition)
                 newSpawnCache.updateDebt += 1
             end;
@@ -3528,12 +3530,12 @@ LPH_JIT_MAX(function() -- Main Cheat
                 bullet[2] = bullet[2] + ticketAddition
             end
 
-            if wapus:GetValue("Rage Bot", "Enabled") then
+            if winhvh:GetValue("Rage Bot", "Enabled") then
                 return
             end
 
-            if wapus:GetValue("Silent Aim", "Enabled") and (wapus:GetValue("Silent Aim", "Hit Chance") >= chanceOne) then
-                local target, entry, part = getClosest(silentaimfov.Position, wapus:GetValue("Silent Aim", "Use FOV") and silentaimfov.Radius, wapus:GetValue("Silent Aim", "Use Dead FOV") and silentaimdeadfov.Radius, wapus:GetValue("Silent Aim", "Visible Check"), (wapus:GetValue("Silent Aim", "Head Shot Chance") >= chanceTwo) and "Head" or "Torso")
+            if winhvh:GetValue("Silent Aim", "Enabled") and (winhvh:GetValue("Silent Aim", "Hit Chance") >= chanceOne) then
+                local target, entry, part = getClosest(silentaimfov.Position, winhvh:GetValue("Silent Aim", "Use FOV") and silentaimfov.Radius, winhvh:GetValue("Silent Aim", "Use Dead FOV") and silentaimdeadfov.Radius, winhvh:GetValue("Silent Aim", "Visible Check"), (winhvh:GetValue("Silent Aim", "Head Shot Chance") >= chanceTwo) and "Head" or "Torso")
 
                 if target then
                     local player = entry._player
@@ -3550,7 +3552,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             local uniqueId, player, position, partName, theTicket, time = ...
             theTicket = theTicket + ticketAddition
 
-            if wapus:GetValue("Rage Bot", "Enabled") then
+            if winhvh:GetValue("Rage Bot", "Enabled") then
                 return
             end
 
@@ -3560,7 +3562,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
             ticketCache[theTicket] = true
             return send(self, name, uniqueId, player, position, partName, theTicket, time + newSpawnCache.latency + newSpawnCache.currentAddition)
-        elseif name == "falldamage" and wapus:GetValue("Movement", "No Fall Damage") then
+        elseif name == "falldamage" and winhvh:GetValue("Movement", "No Fall Damage") then
             return
         elseif name == "stance" then
             newSpawnCache.stance = ...
@@ -3571,7 +3573,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                 local slot = args[1]
                 newSpawnCache.slot = slot
 
-                if wapus:GetValue("Knife Bot", "Kill All (May Despawn)") and not wapus:GetValue("Knife Bot", "Only When Holding Knife") then
+                if winhvh:GetValue("Knife Bot", "Kill All (May Despawn)") and not winhvh:GetValue("Knife Bot", "Only When Holding Knife") then
                     args[1] = 3
                 end
             end
@@ -3582,7 +3584,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             local a, b, c = ...
             newSpawnCache.hasPinged = true
 
-            --if wapus:GetValue("Rage Bot", "Enabled") and wapus:GetValue("Rage Bot", "Firerate (May Cause Kicking)") then -- idk if this needs to be here i think it helps a little
+            --if winhvh:GetValue("Rage Bot", "Enabled") and winhvh:GetValue("Rage Bot", "Firerate (May Cause Kicking)") then -- idk if this needs to be here i think it helps a little
             --    if newSpawnCache.lastUpdate and newSpawnCache.lastOffsetUpdate then
             --        local time = network.getTime()
             --        if timeLag > 0 and newSpawnCache.latency ~= -timeLag then
@@ -3641,12 +3643,12 @@ LPH_JIT_MAX(function() -- Main Cheat
             return
         end
 
-        if wapus:GetValue("Anti Aim", "Enabled (May Cause Despawning)") then
-            if name == "stance" and wapus:GetValue("Anti Aim", "Force Stance") then
+        if winhvh:GetValue("Anti Aim", "Enabled (May Cause Despawning)") then
+            if name == "stance" and winhvh:GetValue("Anti Aim", "Force Stance") then
                 local stance = ...
-                stance = string.lower(wapus:GetValue("Anti Aim", "Set Stance"))
+                stance = string.lower(winhvh:GetValue("Anti Aim", "Set Stance"))
 
-                if wapus:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
+                if winhvh:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
                     currentObj:setStance(stance)
                 end
 
@@ -3696,14 +3698,14 @@ LPH_JIT_MAX(function() -- Main Cheat
     screenCull.step = LPH_NO_VIRTUALIZE(function(...)
         step(...)
 
-        if wapus:GetValue("Third Person", "Enabled") then
+        if winhvh:GetValue("Third Person", "Enabled") then
             local controller = weaponInterface.getActiveWeaponController()
 
-            if controller and (wapus:GetValue("Third Person", "Show Character While Aiming") or not controller:getActiveWeapon()._aiming) then
-                local cameraOffset = Vector3.new(wapus:GetValue("Third Person", "Camera Offset X"), wapus:GetValue("Third Person", "Camera Offset Y"), wapus:GetValue("Third Person", "Camera Offset Z"))
+            if controller and (winhvh:GetValue("Third Person", "Show Character While Aiming") or not controller:getActiveWeapon()._aiming) then
+                local cameraOffset = Vector3.new(winhvh:GetValue("Third Person", "Camera Offset X"), winhvh:GetValue("Third Person", "Camera Offset Y"), winhvh:GetValue("Third Person", "Camera Offset Z"))
                 local didHit = false
 
-                if wapus:GetValue("Third Person", "Camera Offset Always Visible") then
+                if winhvh:GetValue("Third Person", "Camera Offset Always Visible") then
                     local oldPosition = camera.CFrame.Position
                     local newPosition = camera.CFrame * cameraOffset
                     local dir = newPosition - oldPosition
@@ -3724,7 +3726,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local setCharacterRender = thirdPersonObject.setCharacterRender
     function thirdPersonObject:setCharacterRender(render) -- may cause lag but fixes people not rendering with third person
-        if wapus:GetValue("Third Person", "Enabled") then
+        if winhvh:GetValue("Third Person", "Enabled") then
             return setCharacterRender(self, render or (self._player ~= localplayer and camera:WorldToViewportPoint(self._replicationObject._receivedPosition or self:getRootPart().Position).Z > 0))
         end
 
@@ -3746,12 +3748,12 @@ LPH_JIT_MAX(function() -- Main Cheat
                 end
             end
 
-            if wapus:GetValue("Rage Bot", "Enabled") then
+            if winhvh:GetValue("Rage Bot", "Enabled") then
                 return
             end
 
-            if wapus:GetValue("Silent Aim", "Enabled") and (wapus:GetValue("Silent Aim", "Hit Chance") >= chanceOne) then
-                local target, entry, part = getClosest(silentaimfov.Position, wapus:GetValue("Silent Aim", "Use FOV") and silentaimfov.Radius, wapus:GetValue("Silent Aim", "Use Dead FOV") and silentaimdeadfov.Radius, wapus:GetValue("Silent Aim", "Visible Check"), (wapus:GetValue("Silent Aim", "Head Shot Chance") >= chanceTwo) and "Head" or "Torso")
+            if winhvh:GetValue("Silent Aim", "Enabled") and (winhvh:GetValue("Silent Aim", "Hit Chance") >= chanceOne) then
+                local target, entry, part = getClosest(silentaimfov.Position, winhvh:GetValue("Silent Aim", "Use FOV") and silentaimfov.Radius, winhvh:GetValue("Silent Aim", "Use Dead FOV") and silentaimdeadfov.Radius, winhvh:GetValue("Silent Aim", "Visible Check"), (winhvh:GetValue("Silent Aim", "Head Shot Chance") >= chanceTwo) and "Head" or "Torso")
 
                 if target then
                     local player = entry._player
@@ -3764,21 +3766,21 @@ LPH_JIT_MAX(function() -- Main Cheat
                 end
             end
 
-            if wapus:GetValue("World Visuals", "Bullet Tracers") or wapus:GetValue("World Visuals", "Impact Points") then
+            if winhvh:GetValue("World Visuals", "Bullet Tracers") or winhvh:GetValue("World Visuals", "Impact Points") then
                 local frames, hits = simulateBullet(bulletData.position, bulletData.velocity, bulletData.penetrationdepth)
 
-                if wapus:GetValue("World Visuals", "Bullet Tracers") then
-                    local endColor = wapus:GetValue("World Visuals", "Color One")
-                    local startColor = wapus:GetValue("World Visuals", "Color Two")
-                    local diameter = wapus:GetValue("World Visuals", "Tracers Size")
+                if winhvh:GetValue("World Visuals", "Bullet Tracers") then
+                    local endColor = winhvh:GetValue("World Visuals", "Color One")
+                    local startColor = winhvh:GetValue("World Visuals", "Color Two")
+                    local diameter = winhvh:GetValue("World Visuals", "Tracers Size")
                     local frameCount = #frames
 
                     for frame = 1, frameCount do -- god damn perfect bullet tracers
                         local origin, target = table.unpack(frames[frame])
                         local distance = (origin - target).Magnitude
                         local tracer = Instance.new("Part")
-                        tracer.Material = Enum.Material[wapus:GetValue("World Visuals", "Tracers Material")]
-                        tracer.Transparency = wapus:GetValue("World Visuals", "Tracers Transparency") * 0.01
+                        tracer.Material = Enum.Material[winhvh:GetValue("World Visuals", "Tracers Material")]
+                        tracer.Transparency = winhvh:GetValue("World Visuals", "Tracers Transparency") * 0.01
                         tracer.Anchored = true
                         tracer.CanCollide = false
                         tracer.Color = startColor:lerp(endColor, (frame - 1) / math.max(frameCount - 1, 1))
@@ -3787,7 +3789,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                         tracer.CFrame = (CFrame.new(origin, target) * CFrame.Angles(0, math.rad(90), 0)) * CFrame.new(Vector3.new(distance * 0.5, 0, 0))
                         tracer.Parent = ignore
 
-                        task.delay(wapus:GetValue("World Visuals", "Duration"), function()
+                        task.delay(winhvh:GetValue("World Visuals", "Duration"), function()
                             local step = (1 - tracer.Transparency) / 10
 
                             for i = 1, 10 do
@@ -3800,20 +3802,20 @@ LPH_JIT_MAX(function() -- Main Cheat
                     end
                 end
 
-                if wapus:GetValue("World Visuals", "Impact Points") then
+                if winhvh:GetValue("World Visuals", "Impact Points") then
                     for wall = 1, #hits do
                         local point = Instance.new("Part")
-                        point.Material = Enum.Material[wapus:GetValue("World Visuals", "Points Material")]
-                        point.Transparency = wapus:GetValue("World Visuals", "Points Transparency") * 0.01
+                        point.Material = Enum.Material[winhvh:GetValue("World Visuals", "Points Material")]
+                        point.Transparency = winhvh:GetValue("World Visuals", "Points Transparency") * 0.01
                         point.Anchored = true
                         point.CanCollide = false
-                        point.Color = wapus:GetValue("World Visuals", "Points Color")
+                        point.Color = winhvh:GetValue("World Visuals", "Points Color")
                         point.Size = Vector3.new(0.25, 0.25, 0.25)
                         point.Shape = Enum.PartType.Ball
                         point.Position = hits[wall]
                         point.Parent = ignore
 
-                        task.delay(wapus:GetValue("World Visuals", "Duration"), function()
+                        task.delay(winhvh:GetValue("World Visuals", "Duration"), function()
                             local step = (1 - point.Transparency) / 10
 
                             for i = 1, 10 do
@@ -3827,16 +3829,16 @@ LPH_JIT_MAX(function() -- Main Cheat
                 end
             end
 
-            if wapus:GetValue("Backtracking", "Enabled") or wapus:GetValue("Hit Boxes", "Enabled") then
+            if winhvh:GetValue("Backtracking", "Enabled") or winhvh:GetValue("Hit Boxes", "Enabled") then
                 local ontouch = bulletData.ontouch
                 local extra = bulletData.extra
 
                 bulletData.ontouch = function(self, part, position, normal, exit, exitnorm) -- goated hitbox method
                     if not ticketCache[extra.bulletTicket] then
-                        if wapus:GetValue("Hit Boxes", "Enabled") and part:IsDescendantOf(hitboxObjects) then
+                        if winhvh:GetValue("Hit Boxes", "Enabled") and part:IsDescendantOf(hitboxObjects) then
                             ticketCache[extra.bulletTicket] = true
-                            send(network, "bullethit", extra.uniqueId, players[part.Name], position, wapus:GetValue("Hit Boxes", "Hit Part"), extra.bulletTicket + ticketAddition, network.getTime() + newSpawnCache.latency + newSpawnCache.currentAddition)
-                        elseif wapus:GetValue("Backtracking", "Enabled") and part:IsDescendantOf(backtrackObjects) then
+                            send(network, "bullethit", extra.uniqueId, players[part.Name], position, winhvh:GetValue("Hit Boxes", "Hit Part"), extra.bulletTicket + ticketAddition, network.getTime() + newSpawnCache.latency + newSpawnCache.currentAddition)
+                        elseif winhvh:GetValue("Backtracking", "Enabled") and part:IsDescendantOf(backtrackObjects) then
                             local model = part
 
                             while (model.ClassName ~= "Model" or model.Parent.ClassName ~= "Folder") do
@@ -3865,7 +3867,7 @@ LPH_JIT_MAX(function() -- Main Cheat
     local rearLayer = screenGui.DisplayScope.ImageRearLayer
     local updateScope = hudScopeInterface.updateScope
     function hudScopeInterface.updateScope(...)
-        if wapus:GetValue("Gun Mods", "No Sniper Scope") then -- more scripts need this
+        if winhvh:GetValue("Gun Mods", "No Sniper Scope") then -- more scripts need this
             frontLayer.ImageTransparency = 1
             rearLayer.ImageTransparency = 1
 
@@ -3898,7 +3900,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local applyImpulse = recoil.applyImpulse
     function recoil.applyImpulse(...)
-        if aimbotting or wapus:GetValue("Gun Mods", "No Recoil") then
+        if aimbotting or winhvh:GetValue("Gun Mods", "No Recoil") then
             return
         end
 
@@ -3907,7 +3909,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local reload = firearmObject.reload
     function firearmObject:reload()
-        if wapus:GetValue("Gun Mods", "Instant Reload") and self._spareCount > 0 then
+        if winhvh:GetValue("Gun Mods", "Instant Reload") and self._spareCount > 0 then
             if self._spareCount >= self._weaponData.magsize then
                 self._spareCount = self._spareCount - (self._weaponData.magsize - self._magCount)
                 self._magCount = self._weaponData.magsize
@@ -3926,7 +3928,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local computeWalkSway = firearmObject.computeWalkSway
     function firearmObject:computeWalkSway(dy, dx)
-        if wapus:GetValue("Gun Mods", "No Walk Sway") or aimbotting then
+        if winhvh:GetValue("Gun Mods", "No Walk Sway") or aimbotting then
             dy = 0
             dx = 0
         end
@@ -3936,7 +3938,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local computeGunSway = firearmObject.computeGunSway
     function firearmObject.computeGunSway(...)
-        if wapus:GetValue("Gun Mods", "No Gun Sway") or aimbotting then
+        if winhvh:GetValue("Gun Mods", "No Gun Sway") or aimbotting then
             return CFrame.identity
         end
 
@@ -3945,7 +3947,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local fromAxisAngle = cframeLib.fromAxisAngle
     function cframeLib.fromAxisAngle(x, y, z) -- luh freak
-        if aimbotting then -- or wapus:GetValue("Gun Mods", "No Camera Sway") then
+        if aimbotting then -- or winhvh:GetValue("Gun Mods", "No Camera Sway") then
             local controller = weaponInterface.getActiveWeaponController()
             local weapon = controller and controller:getActiveWeapon()
 
@@ -3959,20 +3961,20 @@ LPH_JIT_MAX(function() -- Main Cheat
     function modifyData.getModifiedData(data, ...)
         setreadonly(data, false)
 
-        if wapus:GetValue("Gun Mods", "No Spread") then
+        if winhvh:GetValue("Gun Mods", "No Spread") then
             data.hipfirespread = 0
             data.hipfirestability = 99999
             data.hipfirespreadrecover = 99999
         end
 
-        if wapus:GetValue("Gun Mods", "Small Crosshair") then
+        if winhvh:GetValue("Gun Mods", "Small Crosshair") then
             data.crosssize = 10
             data.crossexpansion = 0
             data.crossspeed = 100
             data.crossdamper = 1
         end
 
-        if wapus:GetValue("Gun Mods", "No Crosshair") then
+        if winhvh:GetValue("Gun Mods", "No Crosshair") then
             data.crosssize = 1000000000
             data.crossexpansion = 0
             data.crossspeed = 100
@@ -4039,20 +4041,20 @@ LPH_JIT_MAX(function() -- Main Cheat
         if makeClone then
             setreadonly(data, false)
 
-            if wapus:GetValue("Gun Mods", "No Spread") then
+            if winhvh:GetValue("Gun Mods", "No Spread") then
                 data.hipfirespread = 0
                 data.hipfirestability = 99999
                 data.hipfirespreadrecover = 99999
             end
 
-            if wapus:GetValue("Gun Mods", "Small Crosshair") then
+            if winhvh:GetValue("Gun Mods", "Small Crosshair") then
                 data.crosssize = 10
                 data.crossexpansion = 0
                 data.crossspeed = 100
                 data.crossdamper = 1
             end
 
-            if wapus:GetValue("Gun Mods", "No Crosshair") then
+            if winhvh:GetValue("Gun Mods", "No Crosshair") then
                 data.crosssize = 1000000000
                 data.crossexpansion = 0
                 data.crossspeed = 100
@@ -4116,12 +4118,12 @@ LPH_JIT_MAX(function() -- Main Cheat
     local mainStep = cameraObject.step
     --function cameraObject.step(self, dt)
     cameraObject.step = LPH_NO_VIRTUALIZE(function(self, dt)
-        if aimbotting or wapus:GetValue("Gun Mods", "No Camera Sway") then
+        if aimbotting or winhvh:GetValue("Gun Mods", "No Camera Sway") then
             mainStep(self, 0)
             self._lookDt = dt
         end
 
-        if wapus:GetValue('Gun Mods', 'No Camera Bob') then
+        if winhvh:GetValue('Gun Mods', 'No Camera Bob') then
             local characterObject = charInterface.getCharacterObject();
             local oldSpeed = characterObject._speed;
 
@@ -4130,7 +4132,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             characterObject._speed = oldSpeed;
         end;
 
-        if aimbotting or wapus:GetValue("Gun Mods", "No Camera Sway") or wapus:GetValue('Gun Mods', 'No Camera Bob') then
+        if aimbotting or winhvh:GetValue("Gun Mods", "No Camera Sway") or winhvh:GetValue('Gun Mods', 'No Camera Bob') then
             return;
         end;
 
@@ -4138,7 +4140,7 @@ LPH_JIT_MAX(function() -- Main Cheat
     end)
 --[[ synz has upval instability
     debug.setupvalue(firearmObject.computeGunSway, 1, {getTime = function()
-        if wapus:GetValue("Gun Mods", "No Gun Sway") or aimbotting then
+        if winhvh:GetValue("Gun Mods", "No Gun Sway") or aimbotting then
             return 0
         end
 
@@ -4151,20 +4153,20 @@ LPH_JIT_MAX(function() -- Main Cheat
         if makeClone then
             setreadonly(data, false) -- prolly dont still need this but its here
 
-            if wapus:GetValue("Gun Mods", "No Spread") then
+            if winhvh:GetValue("Gun Mods", "No Spread") then
                 data.hipfirespread = 0
                 data.hipfirestability = 99999
                 data.hipfirespreadrecover = 99999
             end
 
-            if wapus:GetValue("Gun Mods", "Small Crosshair") then
+            if winhvh:GetValue("Gun Mods", "Small Crosshair") then
                 data.crosssize = 10
                 data.crossexpansion = 0
                 data.crossspeed = 100
                 data.crossdamper = 1
             end
 
-            if wapus:GetValue("Gun Mods", "No Crosshair") then
+            if winhvh:GetValue("Gun Mods", "No Crosshair") then
                 data.crosssize = 1000000000
                 data.crossexpansion = 0
                 data.crossspeed = 100
@@ -4176,7 +4178,7 @@ LPH_JIT_MAX(function() -- Main Cheat
     end, getWeaponModule = contentDatabase.getWeaponModule, __index = contentDatabase})
 
     debug.setupvalue(cameraObject.step, 2, {fromAxisAngle = function(...)
-        return (aimbotting or wapus:GetValue("Gun Mods", "No Camera Sway")) and CFrame.identity or cframeLib.fromAxisAngle(...)
+        return (aimbotting or winhvh:GetValue("Gun Mods", "No Camera Sway")) and CFrame.identity or cframeLib.fromAxisAngle(...)
     end, __index = cframeLib})]]
 
     local getUnlocksData = playerDataUtils.getUnlocksData
@@ -4228,12 +4230,12 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local playSoundId = audioSystem.playSoundId
     function audioSystem.playSoundId(assetId, priority, volume, pitch, part, maxPartDist, pitchRange, randomPitch, emitterSize, rollOffMode, playOnRemove, looped)
-        if wapus:GetValue("Sounds", "Shoot Sound") ~= "None" then
+        if winhvh:GetValue("Sounds", "Shoot Sound") ~= "None" then
             local controller = weaponInterface.getActiveWeaponController()
             local weapon = controller and controller:getActiveWeapon()
 
             if weapon and assetId == weapon:getWeaponStat("firesoundid") then
-                return playSoundId(customAudios[wapus:GetValue("Sounds", "Shoot Sound")], priority, volume)
+                return playSoundId(customAudios[winhvh:GetValue("Sounds", "Shoot Sound")], priority, volume)
             end
         end
 
@@ -4244,14 +4246,14 @@ LPH_JIT_MAX(function() -- Main Cheat
     function audioSystem.playSound(soundName, ...)
         local args = table.pack(...)
 
-        if wapus:GetValue("Sounds", "Hit Sound") ~= "None" and soundName == "hitmarker" then
-            return playSoundId(customAudios[wapus:GetValue("Sounds", "Hit Sound")], 1, args[3])
-        elseif wapus:GetValue("Sounds", "Footstep Sound") ~= "None" and (args[1] == "SelfFoley") then
-            return playSoundId(customAudios[wapus:GetValue("Sounds", "Footstep Sound")], args[2], args[3])
-        elseif wapus:GetValue("Sounds", "Kill Sound") ~= "None" and (soundName == "killshot" or soundName == "headshotkill") then
-            return playSoundId(customAudios[wapus:GetValue("Sounds", "Kill Sound")], 1, args[3])
-        elseif wapus:GetValue("Sounds", "Got Hit Sound") ~= "None" and (soundName == "crackSmall" or soundName == "crackBig") then
-            return playSoundId(customAudios[wapus:GetValue("Sounds", "Got Hit Sound")], 1, args[3])
+        if winhvh:GetValue("Sounds", "Hit Sound") ~= "None" and soundName == "hitmarker" then
+            return playSoundId(customAudios[winhvh:GetValue("Sounds", "Hit Sound")], 1, args[3])
+        elseif winhvh:GetValue("Sounds", "Footstep Sound") ~= "None" and (args[1] == "SelfFoley") then
+            return playSoundId(customAudios[winhvh:GetValue("Sounds", "Footstep Sound")], args[2], args[3])
+        elseif winhvh:GetValue("Sounds", "Kill Sound") ~= "None" and (soundName == "killshot" or soundName == "headshotkill") then
+            return playSoundId(customAudios[winhvh:GetValue("Sounds", "Kill Sound")], 1, args[3])
+        elseif winhvh:GetValue("Sounds", "Got Hit Sound") ~= "None" and (soundName == "crackSmall" or soundName == "crackBig") then
+            return playSoundId(customAudios[winhvh:GetValue("Sounds", "Got Hit Sound")], 1, args[3])
         end
 
         return playSound(soundName, ...)
@@ -4270,12 +4272,12 @@ LPH_JIT_MAX(function() -- Main Cheat
     function effects.breakwindow(part, receiveWindow, netTime)
         if part.Name ~= "Window" then
             return
-        elseif wapus:GetValue("Sounds", "Glass Breaking Sound") ~= "None" then
+        elseif winhvh:GetValue("Sounds", "Glass Breaking Sound") ~= "None" then
             misc.ChildAdded:Connect(function(child)
                 if child.ClassName == "Part" and child.CFrame == part.CFrame then
                     child.ChildAdded:Connect(function(sound)
                         if sound.ClassName == "Sound" then
-                            sound.SoundId = customAudios[wapus:GetValue("Sounds", "Glass Breaking Sound")] or ""
+                            sound.SoundId = customAudios[winhvh:GetValue("Sounds", "Glass Breaking Sound")] or ""
                         end
                     end)
                 end
@@ -4288,12 +4290,12 @@ LPH_JIT_MAX(function() -- Main Cheat
     local setBaseWalkSpeed = charObject.setBaseWalkSpeed
     function charObject:setBaseWalkSpeed(speed)
         newSpawnCache.walkSpeed = newSpawnCache.walkSpeed or speed
-        return setBaseWalkSpeed(self, wapus:GetValue("Movement", "Walk Speed") and wapus:GetValue("Movement", "Set Speed") or speed)
+        return setBaseWalkSpeed(self, winhvh:GetValue("Movement", "Walk Speed") and winhvh:GetValue("Movement", "Set Speed") or speed)
     end
 
     local jump = charObject.jump
     function charObject:jump(height, vaulting)
-        return jump(self, 4 + (wapus:GetValue("Movement", "Jump Power") and wapus:GetValue("Movement", "Height Addition") or 0), vaulting)
+        return jump(self, 4 + (winhvh:GetValue("Movement", "Jump Power") and winhvh:GetValue("Movement", "Height Addition") or 0), vaulting)
     end
 
     callbackList["Movement%%Walk Speed"] = function(state)
@@ -4301,7 +4303,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             local object = charInterface.getCharacterObject()
 
             if state then
-                setBaseWalkSpeed(object, wapus:GetValue("Movement", "Set Speed"))
+                setBaseWalkSpeed(object, winhvh:GetValue("Movement", "Set Speed"))
             else
                 setBaseWalkSpeed(object, newSpawnCache.walkSpeed)
             end
@@ -4330,11 +4332,11 @@ LPH_JIT_MAX(function() -- Main Cheat
     --end
 
     callbackList["Tweaks%%Custom Kill Notification"] = function(state)
-        hudnotify.typeList.kill[1] = state and wapus:GetValue("Tweaks", "Notification Text") or "Enemy Killed!"
+        hudnotify.typeList.kill[1] = state and winhvh:GetValue("Tweaks", "Notification Text") or "Enemy Killed!"
     end
 
     callbackList["Tweaks%%Notification Text"] = function(state)
-        if wapus:GetValue("Tweaks", "Custom Kill Notification") then
+        if winhvh:GetValue("Tweaks", "Custom Kill Notification") then
             hudnotify.typeList.kill[1] = state
         end
     end
@@ -4392,23 +4394,23 @@ LPH_JIT_MAX(function() -- Main Cheat
         callbackList["Anti Aim%%Spin Bot"]()
 
         if charInterface.isAlive() then
-            if wapus:GetValue("Third Person", "Show Character") and wapus:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
-                if wapus:GetValue("Anti Aim", "Force Stance") then
-                    local stance = state and wapus:GetValue("Anti Aim", "Set Stance") or newSpawnCache.stance or "stand"
+            if winhvh:GetValue("Third Person", "Show Character") and winhvh:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
+                if winhvh:GetValue("Anti Aim", "Force Stance") then
+                    local stance = state and winhvh:GetValue("Anti Aim", "Set Stance") or newSpawnCache.stance or "stand"
                     currentObj:setStance(stance)
                 end
 
-                if wapus:GetValue("Anti Aim", "Jitter") then
+                if winhvh:GetValue("Anti Aim", "Jitter") then
                     currentObj:setAim(false)
                 end
             end
 
-            if wapus:GetValue("Anti Aim", "Force Stance") then
-                local stance = state and wapus:GetValue("Anti Aim", "Set Stance") or newSpawnCache.stance or "stand"
+            if winhvh:GetValue("Anti Aim", "Force Stance") then
+                local stance = state and winhvh:GetValue("Anti Aim", "Set Stance") or newSpawnCache.stance or "stand"
                 send(network, "stance", stance)
             end
 
-            if wapus:GetValue("Anti Aim", "Jitter") and not state then
+            if winhvh:GetValue("Anti Aim", "Jitter") and not state then
                 send(network, "aim", false)
             end
         end
@@ -4416,7 +4418,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local lastPos
     callbackList["Third Person%%Enabled"] = function(state)
-        if charInterface.isAlive() and wapus:GetValue("Third Person", "Show Character") then
+        if charInterface.isAlive() and winhvh:GetValue("Third Person", "Show Character") then
             if state then
                 started = true
             else
@@ -4548,7 +4550,7 @@ LPH_JIT_MAX(function() -- Main Cheat
     end
 
     --table.insert(connectionList, ignore.ChildAdded:Connect(function(ref)
-    --    if wapus:GetValue("Movement", "Noclip") and ref.ClassName == "Model" then
+    --    if winhvh:GetValue("Movement", "Noclip") and ref.ClassName == "Model" then
     --        task.delay(0.5, function()
     --            for _, part in ref:GetDescendants() do
     --                if part.ClassName:find("Part") then
@@ -4562,8 +4564,8 @@ LPH_JIT_MAX(function() -- Main Cheat
     crossdot.Filled = true
     crossdot.Size = Vector2.new(1, 1)
     local function updateCrosshair()
-        local enabled = wapus:GetValue("Crosshair", "Enabled")
-        crossdot.Visible = enabled and wapus:GetValue("Crosshair", "Show Dot")
+        local enabled = winhvh:GetValue("Crosshair", "Enabled")
+        crossdot.Visible = enabled and winhvh:GetValue("Crosshair", "Show Dot")
 
         if cross1.Visible ~= enabled then
             cross1.Visible = enabled
@@ -4572,8 +4574,8 @@ LPH_JIT_MAX(function() -- Main Cheat
             cross4.Visible = enabled
         end
 
-        if not wapus:GetValue("Crosshair", "Rainbow Crosshair") then
-            local color = wapus:GetValue("Crosshair", "Crosshair Color")
+        if not winhvh:GetValue("Crosshair", "Rainbow Crosshair") then
+            local color = winhvh:GetValue("Crosshair", "Crosshair Color")
             crossdot.Color = color
             cross1.Color = color
             cross2.Color = color
@@ -4583,15 +4585,15 @@ LPH_JIT_MAX(function() -- Main Cheat
     end
 
     local function updateCrosshairPos(force) -- i didnt want to make this
-        local barrel = wapus:GetValue("Crosshair", "Follow Recoil") and getBarrelLocation()
+        local barrel = winhvh:GetValue("Crosshair", "Follow Recoil") and getBarrelLocation()
         if barrel then barrel = (barrel.Z > 0 and Vector2.new(barrel.X, barrel.Y)); end
         local middle = barrel or (camera.ViewportSize * 0.5)
         local x, y = middle.X, middle.Y
-        local sx = wapus:GetValue("Crosshair", "X Space") * 0.5
-        local sy = wapus:GetValue("Crosshair", "Y Space") * 0.5
-        local w = wapus:GetValue("Crosshair", "X Size")
-        local h = wapus:GetValue("Crosshair", "Y Size")
-        local speed = wapus:GetValue("Crosshair", "Spin Speed")
+        local sx = winhvh:GetValue("Crosshair", "X Space") * 0.5
+        local sy = winhvh:GetValue("Crosshair", "Y Space") * 0.5
+        local w = winhvh:GetValue("Crosshair", "X Size")
+        local h = winhvh:GetValue("Crosshair", "Y Size")
+        local speed = winhvh:GetValue("Crosshair", "Spin Speed")
         crossdot.Position = middle
 
         if speed == 0 or force then
@@ -4647,11 +4649,11 @@ LPH_JIT_MAX(function() -- Main Cheat
             local arm = model:FindFirstChild("Arm")
             local prefix = arm and "Arm " or "Gun "
 
-            if wapus:GetValue("Chams", prefix .. "Chams") then
+            if winhvh:GetValue("Chams", prefix .. "Chams") then
                 local properties, uncache = cham.new(model, {
-                    Material = Enum.Material[wapus:GetValue("Chams", prefix .. "Material")],
-                    Transparency = wapus:GetValue("Chams", prefix .. "Transparency") * 0.01,
-                    Color = wapus:GetValue("Chams", prefix .. "Color")
+                    Material = Enum.Material[winhvh:GetValue("Chams", prefix .. "Material")],
+                    Transparency = winhvh:GetValue("Chams", prefix .. "Transparency") * 0.01,
+                    Color = winhvh:GetValue("Chams", prefix .. "Color")
                 }, false, true, false)
 
                 if properties then
@@ -4741,7 +4743,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local startvotekick = networkConnections.startvotekick
     function networkConnections.startvotekick(username, delay, votes)
-        if wapus:GetValue("Server Hopper", "Server Hop On Votekick") and username == localPlayer.Name then -- this should work mf
+        if winhvh:GetValue("Server Hopper", "Server Hop On Votekick") and username == localPlayer.Name then -- this should work mf
             hopServers()
         end
 
@@ -4754,20 +4756,20 @@ LPH_JIT_MAX(function() -- Main Cheat
         -- 05/18/25
         -- hello pf uses shitty chat now
 
-        if wapus:GetValue("Chat Spam", "Enabled") then
-            local list = chatSpamLists[wapus:GetValue("Chat Spam", "Spam List")]
+        if winhvh:GetValue("Chat Spam", "Enabled") then
+            local list = chatSpamLists[winhvh:GetValue("Chat Spam", "Spam List")]
             local newSpamIndex = 1
 
             if #list ~= 1 then
                 repeat newSpamIndex = math.random(1, #list) until newSpamIndex ~= lastSpamIndex
             end
 
-            --network:send("sendChatMessage", list[newSpamIndex], wapus:GetValue("Chat Spam", "Team Chat"))
+            --network:send("sendChatMessage", list[newSpamIndex], winhvh:GetValue("Chat Spam", "Team Chat"))
             globalChannel:SendAsync(list[newSpamIndex]);
             lastSpamIndex = newSpamIndex
         end
 
-        task.delay(wapus:GetValue("Chat Spam", "Spam Delay"), chatSpam)
+        task.delay(winhvh:GetValue("Chat Spam", "Spam Delay"), chatSpam)
     end
     task.delay(1, chatSpam)
 
@@ -4813,8 +4815,8 @@ LPH_JIT_MAX(function() -- Main Cheat
             if root then
                 newSpawnCache.init = true
 
-                if newSpawnCache.spawned and newSpawnCache.lastUpdate and (clock - newSpawnCache.spawnTime) > 1 and (nextScan - clock) <= 0 and not roundSystem.roundLock and ((not wapus:GetValue("Knife Bot", "Only When Holding Knife")) or (newSpawnCache.slot == 3)) then
-                    local closestCharacters = getClosestPlayers(newSpawnCache.lastUpdate, true, wapus:GetValue("Knife Bot", "Only Kill Target Status"), wapus:GetValue("Knife Bot", "Whitelist Friendly Status"))
+                if newSpawnCache.spawned and newSpawnCache.lastUpdate and (clock - newSpawnCache.spawnTime) > 1 and (nextScan - clock) <= 0 and not roundSystem.roundLock and ((not winhvh:GetValue("Knife Bot", "Only When Holding Knife")) or (newSpawnCache.slot == 3)) then
+                    local closestCharacters = getClosestPlayers(newSpawnCache.lastUpdate, true, winhvh:GetValue("Knife Bot", "Only Kill Target Status"), winhvh:GetValue("Knife Bot", "Whitelist Friendly Status"))
 
                     if closestCharacters then
                         for entryIndex = 1, #closestCharacters do
@@ -4888,7 +4890,7 @@ LPH_JIT_MAX(function() -- Main Cheat
         end
 
         if charInterface.isAlive() then
-            if not wapus:GetValue("Knife Bot", "Only When Holding Knife") and newSpawnCache.slot ~= 3 then
+            if not winhvh:GetValue("Knife Bot", "Only When Holding Knife") and newSpawnCache.slot ~= 3 then
                 if state then
                     send(network, "equip", 3, network.getTime() + newSpawnCache.latency + newSpawnCache.currentAddition)
                 else
@@ -4899,7 +4901,7 @@ LPH_JIT_MAX(function() -- Main Cheat
     end
 
     callbackList["Knife Bot%%Only When Holding Knife"] = function(state)
-        if wapus:GetValue("Knife Bot", "Kill All (May Despawn)") and charInterface.isAlive() and newSpawnCache.slot ~= 3 then
+        if winhvh:GetValue("Knife Bot", "Kill All (May Despawn)") and charInterface.isAlive() and newSpawnCache.slot ~= 3 then
             if state then
                 send(network, "equip", newSpawnCache.slot, network.getTime() + newSpawnCache.latency + newSpawnCache.currentAddition)
             else
@@ -5401,7 +5403,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
     local customModel
     callbackList["Custom Model%%Asset ID"] = function(state)
-        if wapus:GetValue("Custom Model", "Custom Character Model") then
+        if winhvh:GetValue("Custom Model", "Custom Character Model") then
             if customModel then
                 customModel.Parent = nil
             end
@@ -5422,7 +5424,7 @@ LPH_JIT_MAX(function() -- Main Cheat
             end
         end
     end
-    callbackList["Custom Model%%Asset ID"](wapus:GetValue("Custom Model", "Asset ID"))
+    callbackList["Custom Model%%Asset ID"](winhvh:GetValue("Custom Model", "Asset ID"))
 
     callbackList["Custom Model%%Custom Character Model"] = function(state)
         if not state then
@@ -5430,7 +5432,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                 customModel.Parent = nil
             end
         else
-            callbackList["Custom Model%%Asset ID"](wapus:GetValue("Custom Model", "Asset ID"))
+            callbackList["Custom Model%%Asset ID"](winhvh:GetValue("Custom Model", "Asset ID"))
         end
     end
 
@@ -5458,7 +5460,7 @@ LPH_JIT_MAX(function() -- Main Cheat
         end;
 
         if controller and weapon then
-            local isHidden = (hidden or weapon._blackScoped or ((wapus:GetValue("Third Person", "Enabled") and wapus:GetValue("Third Person", "Show Character")) and (wapus:GetValue("Third Person", "Show Character While Aiming") or not aiming)))
+            local isHidden = (hidden or weapon._blackScoped or ((winhvh:GetValue("Third Person", "Enabled") and winhvh:GetValue("Third Person", "Show Character")) and (winhvh:GetValue("Third Person", "Show Character While Aiming") or not aiming)))
             if isHidden then
                 weapon._isHidden = false -- shit fix lmao
                 weapon:hideModel()
@@ -5470,15 +5472,15 @@ LPH_JIT_MAX(function() -- Main Cheat
 
         if customModel and rootPart then
             local part = customModel.ClassName == "Model" and customModel.PrimaryPart or customModel
-            part.CFrame = rootPart.CFrame * CFrame.new(wapus:GetValue("Custom Model", "Asset Offset X"), wapus:GetValue("Custom Model", "Asset Offset Y"), wapus:GetValue("Custom Model", "Asset Offset Z"))
+            part.CFrame = rootPart.CFrame * CFrame.new(winhvh:GetValue("Custom Model", "Asset Offset X"), winhvh:GetValue("Custom Model", "Asset Offset Y"), winhvh:GetValue("Custom Model", "Asset Offset Z"))
         end
 
-        if wapus:GetValue("Third Person", "Enabled") and wapus:GetValue("Third Person", "Show Character") then
+        if winhvh:GetValue("Third Person", "Enabled") and winhvh:GetValue("Third Person", "Show Character") then
             deltaTime = deltaTime + ndt
 
             if rootPart then
                 local position = rootPart.Position;
-                if wapus:GetValue('Anti Aim', 'Fake Lag') then
+                if winhvh:GetValue('Anti Aim', 'Fake Lag') then
                     position = newSpawnCache.lastUpdate;
                 end;
                 lastPos = lastPos or position
@@ -5501,22 +5503,22 @@ LPH_JIT_MAX(function() -- Main Cheat
                             end;
                         end;
 
-                        if wapus:GetValue("More Chams", "Third Person Character Chams") then
+                        if winhvh:GetValue("More Chams", "Third Person Character Chams") then
                             local _, uncache = cham.new(currentObj._character, {
-                                Transparency = wapus:GetValue("More Chams", "Character Transparency") * 0.01,
-                                Material = Enum.Material[wapus:GetValue("More Chams", "Character Material")],
-                                Color = wapus:GetValue("More Chams", "Character Color")
+                                Transparency = winhvh:GetValue("More Chams", "Character Transparency") * 0.01,
+                                Material = Enum.Material[winhvh:GetValue("More Chams", "Character Material")],
+                                Color = winhvh:GetValue("More Chams", "Character Color")
                             }, false, true, false)
                             objectChamUncache = uncache;
                         end
 
-                        if wapus:GetValue("Anti Aim", "Enabled (May Cause Despawning)") and wapus:GetValue("Anti Aim", "Force Stance") and wapus:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
-                            currentObj:setStance(string.lower(wapus:GetValue("Anti Aim", "Set Stance")))
+                        if winhvh:GetValue("Anti Aim", "Enabled (May Cause Despawning)") and winhvh:GetValue("Anti Aim", "Force Stance") and winhvh:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
+                            currentObj:setStance(string.lower(winhvh:GetValue("Anti Aim", "Set Stance")))
                         end
                     end
 
                     local angles = cameraInterface:getActiveCamera():getAngles()
-                    if wapus:GetValue("Anti Aim", "Enabled (May Cause Despawning)") and wapus:GetValue("Third Person", "Apply Anti Aim To Character") then
+                    if winhvh:GetValue("Anti Aim", "Enabled (May Cause Despawning)") and winhvh:GetValue("Third Person", "Apply Anti Aim To Character") then
                         angles = applyAAAngles(angles)
                     end
 
@@ -5549,7 +5551,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                     lastTime = clockTime
                     started = false
 
-                    if not wapus:GetValue("Third Person", "Show Character While Aiming") and controller and aiming then
+                    if not winhvh:GetValue("Third Person", "Show Character While Aiming") and controller and aiming then
                         --currentObj:setCharacterRender(false)
                         setCharacterRender(currentObj, false)
                     end
@@ -5567,14 +5569,14 @@ LPH_JIT_MAX(function() -- Main Cheat
             end
         end
 
-        if wapus:GetValue("Rage Bot", "Enabled") and clockTime > nextShot and not roundSystem.roundLock and not wapus:GetValue("Knife Bot", "Kill All (May Despawn)") then --  and newSpawnCache.hasPinged
+        if winhvh:GetValue("Rage Bot", "Enabled") and clockTime > nextShot and not roundSystem.roundLock and not winhvh:GetValue("Knife Bot", "Kill All (May Despawn)") then --  and newSpawnCache.hasPinged
             --[[if weapon and weapon._weaponData then
                 weapon:shoot(true)
             end]]
 
             if weapon and weapon._weaponData and newSpawnCache.lastUpdate and not teleporting then
                 local origin = newSpawnCache.lastUpdate
-                local closestPlayers = getClosestPlayers(origin, false, wapus:GetValue("Rage Bot", "Only Shoot Target Status"), wapus:GetValue("Rage Bot", "Whitelist Friendly Status"))
+                local closestPlayers = getClosestPlayers(origin, false, winhvh:GetValue("Rage Bot", "Only Shoot Target Status"), winhvh:GetValue("Rage Bot", "Whitelist Friendly Status"))
                 local data = weapon._weaponData
                 local penetration = data.penetrationdepth
                 local speed = data.bulletspeed
@@ -5619,7 +5621,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                                 --ticketCache[ticket] = true
                             end
 
-                            if wapus:GetValue("Rage Bot", "Shoot Effects") and weapon._barrelPart then
+                            if winhvh:GetValue("Rage Bot", "Shoot Effects") and weapon._barrelPart then
                                 local barrel = weapon._barrelPart
 
                                 effects.muzzleflash(barrel, data.hideflash, 0.9)
@@ -5646,7 +5648,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
                             local fireDelay = 60 / (data.variablefirerate and data.firerate[weapon._firemodeIndex] or data.firerate)
 
-                            --if wapus:GetValue("Rage Bot", "Firerate (May Cause Kicking)") then
+                            --if winhvh:GetValue("Rage Bot", "Firerate (May Cause Kicking)") then
                             --    if (newSpawnCache.currentAddition + fireDelay) <= timeRange then
                             --        newSpawnCache.currentAddition += fireDelay
                             --        newSpawnCache.lastOffsetUpdate = network.getTime()
@@ -5681,7 +5683,7 @@ LPH_JIT_MAX(function() -- Main Cheat
         end
 
         if controller and weapon then
-            local isHidden = (hidden or weapon._blackScoped or ((wapus:GetValue("Third Person", "Enabled") and wapus:GetValue("Third Person", "Show Character")) and (wapus:GetValue("Third Person", "Show Character While Aiming") or not aiming)))
+            local isHidden = (hidden or weapon._blackScoped or ((winhvh:GetValue("Third Person", "Enabled") and winhvh:GetValue("Third Person", "Show Character")) and (winhvh:GetValue("Third Person", "Show Character While Aiming") or not aiming)))
             if isHidden then
                 weapon._isHidden = false -- shit fix lmao
                 weapon:hideModel()
@@ -5693,7 +5695,7 @@ LPH_JIT_MAX(function() -- Main Cheat
 
         if customModel and rootPart then
             local part = customModel.ClassName == "Model" and customModel.PrimaryPart or customModel
-            customModel.CFrame = rootPart.CFrame * CFrame.new(wapus:GetValue("Custom Model", "Asset Offset X"), wapus:GetValue("Custom Model", "Asset Offset Y"), wapus:GetValue("Custom Model", "Asset Offset Z"))
+            customModel.CFrame = rootPart.CFrame * CFrame.new(winhvh:GetValue("Custom Model", "Asset Offset X"), winhvh:GetValue("Custom Model", "Asset Offset Y"), winhvh:GetValue("Custom Model", "Asset Offset Z"))
         end
 
         replicationInterface.operateOnAllEntries(function(player, entry)
@@ -5711,22 +5713,22 @@ LPH_JIT_MAX(function() -- Main Cheat
         table.insert(movementCache.time, 1, clockTime)
         table.remove(movementCache.time, 16)
 
-        if wapus:GetValue("Anti Aim", "Enabled (May Cause Despawning)") and wapus:GetValue("Anti Aim", "Jitter") and rootPart and (clockTime - lastJitter) > (1 / wapus:GetValue("Anti Aim", "Jitter Speed") / 2) then
+        if winhvh:GetValue("Anti Aim", "Enabled (May Cause Despawning)") and winhvh:GetValue("Anti Aim", "Jitter") and rootPart and (clockTime - lastJitter) > (1 / winhvh:GetValue("Anti Aim", "Jitter Speed") / 2) then
             lastJitterStarted = not lastJitterStarted
             send(network, "aim", lastJitterStarted)
             lastJitter = clockTime
 
-            if wapus:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
+            if winhvh:GetValue("Third Person", "Apply Anti Aim To Character") and currentObj then
                 currentObj:setAim(lastJitterStarted)
             end
         end
 
-        if wapus:GetValue("Movement", "Bunny Hop") and rootPart and (not wapus:GetValue("Movement", "Only While Jumping") or userInputService:IsKeyDown(Enum.KeyCode.Space)) then
+        if winhvh:GetValue("Movement", "Bunny Hop") and rootPart and (not winhvh:GetValue("Movement", "Only While Jumping") or userInputService:IsKeyDown(Enum.KeyCode.Space)) then
             currentCharObject._lastJumpTime = 0
-            currentCharObject:jump(4 + (wapus:GetValue("Movement", "Jump Power") and wapus:GetValue("Movement", "Height Addition") or 0))
+            currentCharObject:jump(4 + (winhvh:GetValue("Movement", "Jump Power") and winhvh:GetValue("Movement", "Height Addition") or 0))
         end
 
-        if wapus:GetValue("Movement", "Noclip") and rootPart then
+        if winhvh:GetValue("Movement", "Noclip") and rootPart then
             local ref = ignore:FindFirstChildOfClass("Model")
 
             if ref then
@@ -5739,7 +5741,7 @@ LPH_JIT_MAX(function() -- Main Cheat
         end
 
         --[[
-        if false then --wapus:GetValue("Movement", "Fly") and rootPart then
+        if false then --winhvh:GetValue("Movement", "Fly") and rootPart then
             local cframe = camera.CFrame
             local direction = Vector3.zero
             local forward = cframe.LookVector
@@ -5773,27 +5775,27 @@ LPH_JIT_MAX(function() -- Main Cheat
                 rootPart.Anchored = true
             else
                 rootPart.Anchored = false
-                rootPart.Velocity = direction.Unit * wapus:GetValue("Movement", "Fly Speed")
+                rootPart.Velocity = direction.Unit * winhvh:GetValue("Movement", "Fly Speed")
             end
         end
         ]]
 
-        if wapus:GetValue("Hit Boxes", "Enabled") then
+        if winhvh:GetValue("Hit Boxes", "Enabled") then
             replicationInterface.operateOnAllEntries(function(player, entry)
                 if entry._isEnemy then
                     local sphere = hitboxObjects:FindFirstChild(player.Name)
 
                     if entry._receivedPosition then
                         if not sphere then
-                            local size = wapus:GetValue("Hit Boxes", "Size")
+                            local size = winhvh:GetValue("Hit Boxes", "Size")
                             sphere = Instance.new("Part")
                             sphere.Name = player.Name
                             sphere.CanCollide = true
                             sphere.Shape = Enum.PartType.Ball
                             sphere.Size = Vector3.new(size, size, size)
-                            sphere.Material = Enum.Material[wapus:GetValue("Hit Boxes", "Material")]
-                            sphere.Transparency = wapus:GetValue("Hit Boxes", "Transparency") * 0.01
-                            sphere.Color = wapus:GetValue("Hit Boxes", "Color")
+                            sphere.Material = Enum.Material[winhvh:GetValue("Hit Boxes", "Material")]
+                            sphere.Transparency = winhvh:GetValue("Hit Boxes", "Transparency") * 0.01
+                            sphere.Color = winhvh:GetValue("Hit Boxes", "Color")
                             sphere.Parent = hitboxObjects
                         end
 
@@ -5805,8 +5807,8 @@ LPH_JIT_MAX(function() -- Main Cheat
             end)
         end
 
-        if wapus:GetValue("Backtracking", "Enabled") then
-            local delay = 1 / wapus:GetValue("Backtracking", "Refresh Rate")
+        if winhvh:GetValue("Backtracking", "Enabled") then
+            local delay = 1 / winhvh:GetValue("Backtracking", "Refresh Rate")
 
             if clockTime > backtrackTime + delay then
                 replicationInterface.operateOnAllEntries(function(player, entry)
@@ -5816,7 +5818,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                     if entry._isEnemy and character then
                         local clone
 
-                        if wapus:GetValue("Backtracking", "Clone Character") then
+                        if winhvh:GetValue("Backtracking", "Clone Character") then
                             clone = character:Clone()
                         else
                             clone = Instance.new("Model")
@@ -5830,16 +5832,16 @@ LPH_JIT_MAX(function() -- Main Cheat
 
                         clone.Name = player.Name
                         local properties = {
-                            Material = Enum.Material[wapus:GetValue("Backtracking", "Character Material")],
-                            Transparency = wapus:GetValue("Backtracking", "Character Transparency") * 0.01,
-                            Color = wapus:GetValue("Backtracking", "Character Color"),
+                            Material = Enum.Material[winhvh:GetValue("Backtracking", "Character Material")],
+                            Transparency = winhvh:GetValue("Backtracking", "Character Transparency") * 0.01,
+                            Color = winhvh:GetValue("Backtracking", "Character Color"),
                             CanCollide = true
                         }
 
                         local _, uncache = cham.new(clone, properties, false, true, false)
                         clone.Parent = backtrackObjects
 
-                        task.delay(wapus:GetValue("Backtracking", "Character Duration"), function()
+                        task.delay(winhvh:GetValue("Backtracking", "Character Duration"), function()
                             local transparency = (1 - properties.Transparency) / 5
 
                             for transparencyIndex = 1, 5 do
@@ -5873,8 +5875,8 @@ LPH_JIT_MAX(function() -- Main Cheat
         local clockTime = os.clock()
 
         aimbotting = false
-        if wapus:GetValue("Aim Bot", "Enabled") and aiming then
-            local target, entry, part = getClosest(aimbotfov.Position, wapus:GetValue("Aim Bot", "Use FOV") and aimbotfov.Radius, wapus:GetValue("Aim Bot", "Use Dead FOV") and aimbotdeadfov.Radius, wapus:GetValue("Aim Bot", "Visible Check"), wapus:GetValue("Aim Bot", "Target Part"))
+        if winhvh:GetValue("Aim Bot", "Enabled") and aiming then
+            local target, entry, part = getClosest(aimbotfov.Position, winhvh:GetValue("Aim Bot", "Use FOV") and aimbotfov.Radius, winhvh:GetValue("Aim Bot", "Use Dead FOV") and aimbotdeadfov.Radius, winhvh:GetValue("Aim Bot", "Visible Check"), winhvh:GetValue("Aim Bot", "Target Part"))
 
             if target and movementCache.position[entry._player][15] then
                 aimbotting = true
@@ -5888,7 +5890,7 @@ LPH_JIT_MAX(function() -- Main Cheat
                 local x = vx > cameraObj._maxAngle and cameraObj._maxAngle or vx < cameraObj._minAngle and cameraObj._minAngle or vx
                 local y = (vy + pi - cy) % tau - pi + cy
                 local newangles = Vector3.new(x, y, 0)
-                local smoothing = wapus:GetValue("Aim Bot", "Smoothness")
+                local smoothing = winhvh:GetValue("Aim Bot", "Smoothness")
 
                 if smoothing ~= 0 then
                     newangles = cameraObj._angles:lerp(newangles, math.clamp(1 - smoothing + (clockTime - aimTime)^2, 0, 1))
@@ -5901,7 +5903,7 @@ LPH_JIT_MAX(function() -- Main Cheat
         aimTime = aimbotting and aimTime
 
         local circlePos
-        if wapus:GetValue("FOV Settings", "FOV Follows Recoil") then
+        if winhvh:GetValue("FOV Settings", "FOV Follows Recoil") then
             local barrel = getBarrelLocation()
 
             if barrel and barrel.Z > 0 then
@@ -5915,27 +5917,27 @@ LPH_JIT_MAX(function() -- Main Cheat
         silentaimfov.Position = circlePos
         silentaimdeadfov.Position = circlePos
 
-        if wapus:GetValue("FOV Settings", "Dynamic FOV") then
+        if winhvh:GetValue("FOV Settings", "Dynamic FOV") then
             local factor = not charInterface.isAlive() and 1 or (cameraInterface.getActiveCamera():getBaseFov() / camera.FieldOfView)
-            aimbotfov.Radius = wapus:GetValue("Aim Bot", "FOV Radius") * factor
-            aimbotdeadfov.Radius = wapus:GetValue("Aim Bot", "Dead FOV Radius") * factor
-            silentaimfov.Radius = wapus:GetValue("Silent Aim", "FOV Radius") * factor
-            silentaimdeadfov.Radius = wapus:GetValue("Silent Aim", "Dead FOV Radius") * factor
+            aimbotfov.Radius = winhvh:GetValue("Aim Bot", "FOV Radius") * factor
+            aimbotdeadfov.Radius = winhvh:GetValue("Aim Bot", "Dead FOV Radius") * factor
+            silentaimfov.Radius = winhvh:GetValue("Silent Aim", "FOV Radius") * factor
+            silentaimdeadfov.Radius = winhvh:GetValue("Silent Aim", "Dead FOV Radius") * factor
         end
 
-        if wapus:GetValue("World Visuals", "Ambient") then
-            local color = wapus:GetValue("World Visuals", "Ambient Color")
+        if winhvh:GetValue("World Visuals", "Ambient") then
+            local color = winhvh:GetValue("World Visuals", "Ambient Color")
             lighting.Ambient = color
             lighting.OutdoorAmbient = color
         end
 
-        if wapus:GetValue("Crosshair", "Enabled") then
-            if (wapus:GetValue("Crosshair", "Spin Speed") > 0) or wapus:GetValue("Crosshair", "Follow Recoil") then
+        if winhvh:GetValue("Crosshair", "Enabled") then
+            if (winhvh:GetValue("Crosshair", "Spin Speed") > 0) or winhvh:GetValue("Crosshair", "Follow Recoil") then
                 updateCrosshairPos()
             end
 
-            if wapus:GetValue("Crosshair", "Rainbow Crosshair") then
-                local rainbow = Color3.fromHSV((clockTime * wapus:GetValue("Crosshair", "Rainbow Speed")) % 1, 1, 1)
+            if winhvh:GetValue("Crosshair", "Rainbow Crosshair") then
+                local rainbow = Color3.fromHSV((clockTime * winhvh:GetValue("Crosshair", "Rainbow Speed")) % 1, 1, 1)
                 crossdot.Color = rainbow
                 cross1.Color = rainbow
                 cross2.Color = rainbow
@@ -6079,8 +6081,8 @@ LPH_NO_VIRTUALIZE(function() -- Make UI
     local title
     if isfile(folderName .. "/theme.json") then
         local userThemeData = httpService:JSONDecode(readfile(folderName .. "/theme.json"))
-        title = (userThemeData.Title == "Wapus" and "Wapus.Shop") or userThemeData.Title
-        wapus.theme = {
+        title = (userThemeData.Title == "Wapus" and "WinHVH") or userThemeData.Title
+        winhvh.theme = {
             accent = Color3.fromRGB(table.unpack(userThemeData["Accent Color"])),
             text = Color3.fromRGB(table.unpack(userThemeData["Text Color"])),
             background = Color3.fromRGB(table.unpack(userThemeData["Background Color"])),
@@ -6104,9 +6106,9 @@ LPH_NO_VIRTUALIZE(function() -- Make UI
         writefile(folderName .. "/theme.json", httpService:JSONEncode(themeData))
     end
 
-    local menu = wapus:CreateMenu(title or defaultUIName, (not cacheExists) or devMode or uiCache.open, cacheExists and uiCache.index or 1)
-    wapus.GetValue = menu.GetValue
-    wapus.sectionIndexes = menu.sectionIndexes
+    local menu = winhvh:CreateMenu(title or defaultUIName, (not cacheExists) or devMode or uiCache.open, cacheExists and uiCache.index or 1)
+    winhvh.GetValue = menu.GetValue
+    winhvh.sectionIndexes = menu.sectionIndexes
 
     local function getConfigNames()
         local names = {}
@@ -6181,23 +6183,27 @@ LPH_NO_VIRTUALIZE(function() -- Make UI
         saveConfig(folderName .. "/cache/settings.json", {open = menu.open, index = menu.tabIndex})
     end
 
-    local legit = menu:CreateTab("Legit")
-    local rage = menu:CreateTab("Rage")
+    local combat = menu:CreateTab("Combat")
+    local movement = menu:CreateTab("Movement") 
     local visuals = menu:CreateTab("Visuals")
-    local misc = menu:CreateTab("Misc")
+    local exploits = menu:CreateTab("Exploits")
     local settings = menu:CreateTab("Settings")
 
-    local aimbot = legit:CreateSection("Aim Bot", false, "half")
+    -- Combat tab restructuring
+    local ragebot = combat:CreateSection("Rage Bot", false, "half")
+    local silentaim = combat:CreateSection("Silent Aim", true, "half")
+    local aimbot = combat:CreateSection("Aim Bot", false, "half")
+    local knifebot = combat:CreateSection("Knife Bot", false, "half")
     local fovsettings = aimbot:AddSection("FOV Settings", false, "half")
-    local silentaim = legit:CreateSection("Silent Aim", true, "half")
-    local backtrack = legit:CreateSection("Backtracking", false, "half")
+    local backtrack = combat:CreateSection("Backtracking", true, "half")
     local hitboxes = backtrack:AddSection("Hit Boxes")
-    local gunmods = legit:CreateSection("Gun Mods", true, "half")
+    local gunmods = combat:CreateSection("Gun Mods", false, "half")
 
-    local ragebot = rage:CreateSection("Rage Bot", false, "half")
-    local knifebot = rage:CreateSection("Knife Bot", false, "half");
-    local antiaim = rage:CreateSection("Anti Aim", true, "whole");
+    -- Movement tab for anti-aim and movement features
+    local antiaim = movement:CreateSection("Anti Aim", false, "whole")
     local fakelag = antiaim
+    local movementsec = movement:CreateSection("Movement", true, "half")
+    local sounds = movement:CreateSection("Sounds", true, "half")
 
     local enemyesp = visuals:CreateSection("Enemy ESP", false, "whole")
     --local teamesp = enemyesp:AddSection("Team ESP")
@@ -6208,12 +6214,11 @@ LPH_NO_VIRTUALIZE(function() -- Make UI
     local customChar = thirdperson:AddSection("Custom Model")
     local crosshair = thirdperson:AddSection("Crosshair")
 
-    local movement = misc:CreateSection("Movement", false, "half")
-    local sounds = misc:CreateSection("Sounds", false, "half")
-    local tweaks = misc:CreateSection("Tweaks", true, "third")
+    -- Exploits tab sections
+    local tweaks = exploits:CreateSection("Tweaks", false, "third")
     local antivotekick = tweaks:AddSection("Anti Votekick")
-    local chatspam = misc:CreateSection("Chat Spam", true, "third")
-    local hopper = misc:CreateSection("Server Hopper", true, "third")
+    local chatspam = exploits:CreateSection("Chat Spam", true, "third")
+    local hopper = exploits:CreateSection("Server Hopper", true, "third")
     --local votekick = hopper:AddSection("Votekick")
 
     aimbot:AddToggle("Enabled", false, getCallback("Aim Bot%%Enabled")):AddKeyBind(nil, "Key Bind")
@@ -6415,16 +6420,16 @@ LPH_NO_VIRTUALIZE(function() -- Make UI
     crosshair:AddToggle("Rainbow Crosshair", false, getCallback("Crosshair%%Rainbow Crosshair"))
     crosshair:AddSlider("Rainbow Speed", 0.5, 0, 3, 0.05, " Rainbows/Second", getCallback("Crosshair%%Rainbow Speed"))
 
-    movement:AddToggle("Walk Speed", false, getCallback("Movement%%Walk Speed")):AddKeyBind(nil, "Walk Bind")
-    movement:AddSlider("Set Speed", 50, 10, 250, 1, " Studs/Second", getCallback("Movement%%Set Speed"))
-    movement:AddToggle("Jump Power", false, getCallback("Movement%%Jump Power")):AddKeyBind(nil, "Jump Bind")
-    movement:AddSlider("Height Addition", 10, 1, 15, 1, " Studs", getCallback("Movement%%Height Addition"))
-    movement:AddToggle("No Fall Damage", false, getCallback("Movement%%No Fall Damage"))
-    movement:AddToggle("Bunny Hop", false, getCallback("Movement%%Bunny Hop")):AddKeyBind(nil, "BHop Bind")
-    movement:AddToggle("Only While Jumping", true, getCallback("Movement%%Only While Jumping"))
-    --movement:AddToggle("Fly", false, getCallback("Movement%%Fly")):AddKeyBind(nil, "Fly Bind")
-    --movement:AddSlider("Fly Speed", 50, 10, 250, 1, " Studs/Second", getCallback("Movement%%Fly Speed"))
-    --movement:AddToggle("Noclip", false, getCallback("Movement%%Noclip")):AddKeyBind(nil, "Noclip Bind")
+    movementsec:AddToggle("Walk Speed", false, getCallback("Movement%%Walk Speed")):AddKeyBind(nil, "Walk Bind")
+    movementsec:AddSlider("Set Speed", 50, 10, 250, 1, " Studs/Second", getCallback("Movement%%Set Speed"))
+    movementsec:AddToggle("Jump Power", false, getCallback("Movement%%Jump Power")):AddKeyBind(nil, "Jump Bind")
+    movementsec:AddSlider("Height Addition", 10, 1, 15, 1, " Studs", getCallback("Movement%%Height Addition"))
+    movementsec:AddToggle("No Fall Damage", false, getCallback("Movement%%No Fall Damage"))
+    movementsec:AddToggle("Bunny Hop", false, getCallback("Movement%%Bunny Hop")):AddKeyBind(nil, "BHop Bind")
+    movementsec:AddToggle("Only While Jumping", true, getCallback("Movement%%Only While Jumping"))
+    --movementsec:AddToggle("Fly", false, getCallback("Movement%%Fly")):AddKeyBind(nil, "Fly Bind")
+    --movementsec:AddSlider("Fly Speed", 50, 10, 250, 1, " Studs/Second", getCallback("Movement%%Fly Speed"))
+    --movementsec:AddToggle("Noclip", false, getCallback("Movement%%Noclip")):AddKeyBind(nil, "Noclip Bind")
 
     sounds:AddDropdown("Shoot Sound", "None", soundFileList, getCallback("Sounds%%Shoot Sound"))
     sounds:AddDropdown("Hit Sound", "None", soundFileList, getCallback("Sounds%%Hit Sound"))
@@ -6553,3 +6558,4 @@ LPH_NO_VIRTUALIZE(function() -- Make UI
         end
     end
 end)()
+
