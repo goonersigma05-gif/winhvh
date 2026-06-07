@@ -3022,11 +3022,27 @@ function Library:CreateWindow(...)
         Parent = Inner;
     });
 
+    -- TabArea floats in the gap between title and main content
+    local TabArea = Library:Create('Frame', {
+        BackgroundTransparency = 1;
+        Position = UDim2.new(0, 8, 0, 28); -- Just below title (25px + 3px gap)
+        Size = UDim2.new(1, -16, 0, 25);
+        ZIndex = 10;
+        Parent = Inner;
+    });
+
+    local TabListLayout = Library:Create('UIListLayout', {
+        Padding = UDim.new(0, Config.TabPadding);
+        FillDirection = Enum.FillDirection.Horizontal;
+        SortOrder = Enum.SortOrder.LayoutOrder;
+        Parent = TabArea;
+    });
+
     local MainSectionOuter = Library:Create('Frame', {
         BackgroundColor3 = Library.BackgroundColor;
         BorderColor3 = Library.OutlineColor;
-        Position = UDim2.new(0, 8, 0, 25);
-        Size = UDim2.new(1, -16, 1, -33);
+        Position = UDim2.new(0, 8, 0, 58); -- Start below tabs (28 + 25 + 5 spacing)
+        Size = UDim2.new(1, -16, 1, -66);
         ZIndex = 1;
         Parent = Inner;
     });
@@ -3048,22 +3064,6 @@ function Library:CreateWindow(...)
 
     Library:AddToRegistry(MainSectionInner, {
         BackgroundColor3 = 'BackgroundColor';
-    });
-
-    -- TabArea now floats ABOVE the main UI (parented to Outer, not MainSectionInner)
-    local TabArea = Library:Create('Frame', {
-        BackgroundTransparency = 1;
-        Position = UDim2.new(0, 8, 0, -30); -- Higher above the main frame
-        Size = UDim2.new(1, -16, 0, 25);
-        ZIndex = 10;
-        Parent = Outer; -- Parented to Outer so it floats outside
-    });
-
-    local TabListLayout = Library:Create('UIListLayout', {
-        Padding = UDim.new(0, Config.TabPadding);
-        FillDirection = Enum.FillDirection.Horizontal;
-        SortOrder = Enum.SortOrder.LayoutOrder;
-        Parent = TabArea;
     });
 
     local TabContainer = Library:Create('Frame', {
