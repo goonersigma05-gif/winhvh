@@ -2987,23 +2987,97 @@ function Library:CreateWindow(...)
         BorderColor3 = 'AccentColor';
     });
 
-    -- Real glow effect using ImageLabel with 9-slice scaling
-    local GlowImage = Library:Create('ImageLabel', {
-        BackgroundTransparency = 1;
-        Position = UDim2.new(0, -15, 0, -15);
-        Size = UDim2.new(1, 30, 1, 30);
-        Image = 'rbxassetid://4996891970'; -- Glow/shadow image
-        ImageColor3 = Library.AccentColor;
-        ImageTransparency = 0.5;
-        ScaleType = Enum.ScaleType.Slice;
-        SliceCenter = Rect.new(20, 20, 280, 280);
-        ZIndex = 0;
-        Parent = Outer;
-    });
+    -- Real glow effect using multiple gradient layers
+    for i = 1, 3 do
+        local GlowLayer = Library:Create('Frame', {
+            BackgroundTransparency = 1;
+            Position = UDim2.new(0, -i * 3, 0, -i * 3);
+            Size = UDim2.new(1, i * 6, 1, i * 6);
+            ZIndex = 0;
+            Parent = Outer;
+        });
 
-    Library:AddToRegistry(GlowImage, {
-        ImageColor3 = 'AccentColor';
-    });
+        -- Top glow
+        local TopGlow = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Position = UDim2.new(0, 0, 0, 0);
+            Size = UDim2.new(1, 0, 0, i * 3);
+            ZIndex = 0;
+            Parent = GlowLayer;
+        });
+
+        Library:Create('UIGradient', {
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 1 - (0.3 / i)),
+                NumberSequenceKeypoint.new(1, 1)
+            });
+            Rotation = 90;
+            Parent = TopGlow;
+        });
+
+        -- Bottom glow
+        local BottomGlow = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Position = UDim2.new(0, 0, 1, -i * 3);
+            Size = UDim2.new(1, 0, 0, i * 3);
+            ZIndex = 0;
+            Parent = GlowLayer;
+        });
+
+        Library:Create('UIGradient', {
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 1),
+                NumberSequenceKeypoint.new(1, 1 - (0.3 / i))
+            });
+            Rotation = 90;
+            Parent = BottomGlow;
+        });
+
+        -- Left glow
+        local LeftGlow = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Position = UDim2.new(0, 0, 0, 0);
+            Size = UDim2.new(0, i * 3, 1, 0);
+            ZIndex = 0;
+            Parent = GlowLayer;
+        });
+
+        Library:Create('UIGradient', {
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 1 - (0.3 / i)),
+                NumberSequenceKeypoint.new(1, 1)
+            });
+            Rotation = 0;
+            Parent = LeftGlow;
+        });
+
+        -- Right glow
+        local RightGlow = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Position = UDim2.new(1, -i * 3, 0, 0);
+            Size = UDim2.new(0, i * 3, 1, 0);
+            ZIndex = 0;
+            Parent = GlowLayer;
+        });
+
+        Library:Create('UIGradient', {
+            Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 1),
+                NumberSequenceKeypoint.new(1, 1 - (0.3 / i))
+            });
+            Rotation = 0;
+            Parent = RightGlow;
+        });
+
+        Library:AddToRegistry(TopGlow, { BackgroundColor3 = 'AccentColor' });
+        Library:AddToRegistry(BottomGlow, { BackgroundColor3 = 'AccentColor' });
+        Library:AddToRegistry(LeftGlow, { BackgroundColor3 = 'AccentColor' });
+        Library:AddToRegistry(RightGlow, { BackgroundColor3 = 'AccentColor' });
+    end
 
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
