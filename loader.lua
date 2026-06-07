@@ -2987,52 +2987,30 @@ function Library:CreateWindow(...)
         BorderColor3 = 'AccentColor';
     });
 
-    -- Add top glow effect
-    local TopGlow = Library:Create('Frame', {
-        BackgroundColor3 = Library.AccentColor;
-        BorderSizePixel = 0;
-        Position = UDim2.new(0, 0, 0, 0);
-        Size = UDim2.new(1, 0, 0, 3);
-        ZIndex = 2;
+    -- Add glowing border effect around entire window
+    local WindowGlow = Library:Create('UIStroke', {
+        Color = Library.AccentColor;
+        Thickness = 2;
+        Transparency = 0;
+        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
         Parent = Inner;
     });
 
-    Library:AddToRegistry(TopGlow, {
-        BackgroundColor3 = 'AccentColor';
+    Library:AddToRegistry(WindowGlow, {
+        Color = 'AccentColor';
     });
 
-    -- Add glow shadow effect (ImageLabel with gradient for blur effect)
-    local GlowShadow = Library:Create('Frame', {
-        BackgroundTransparency = 1;
-        Position = UDim2.new(0, 0, 0, 3);
-        Size = UDim2.new(1, 0, 0, 15);
-        ZIndex = 1;
-        Parent = Inner;
+    -- Add outer glow shadow for blur effect
+    local OuterGlow = Library:Create('UIStroke', {
+        Color = Library.AccentColor;
+        Thickness = 6;
+        Transparency = 0.6;
+        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+        Parent = Outer;
     });
 
-    local GlowGradient = Library:Create('UIGradient', {
-        Color = ColorSequence.new({
-            ColorSequenceKeypoint.new(0, Library.AccentColor),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
-        });
-        Rotation = 90;
-        Transparency = NumberSequence.new({
-            NumberSequenceKeypoint.new(0, 0.4),
-            NumberSequenceKeypoint.new(1, 1)
-        });
-        Parent = GlowShadow;
-    });
-
-    Library:Create('Frame', {
-        BackgroundColor3 = Library.AccentColor;
-        BorderSizePixel = 0;
-        Size = UDim2.new(1, 0, 1, 0);
-        ZIndex = 1;
-        Parent = GlowShadow;
-    });
-
-    Library:AddToRegistry(GlowShadow:FindFirstChildOfClass('Frame'), {
-        BackgroundColor3 = 'AccentColor';
+    Library:AddToRegistry(OuterGlow, {
+        Color = 'AccentColor';
     });
 
     local WindowLabel = Library:CreateLabel({
