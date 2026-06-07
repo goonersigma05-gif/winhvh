@@ -30,10 +30,10 @@ local Library = {
     HudRegistry = {};
 
     FontColor = Color3.fromRGB(255, 255, 255);
-    MainColor = Color3.fromRGB(28, 28, 28);
-    BackgroundColor = Color3.fromRGB(20, 20, 20);
+    MainColor = Color3.fromRGB(10, 10, 10); -- Much darker (was 28)
+    BackgroundColor = Color3.fromRGB(5, 5, 5); -- Much darker (was 20)
     AccentColor = Color3.fromRGB(255, 145, 0); -- Orange/gold accent
-    OutlineColor = Color3.fromRGB(50, 50, 50);
+    OutlineColor = Color3.fromRGB(30, 30, 30); -- Darker outline (was 50)
     RiskColor = Color3.fromRGB(255, 50, 50),
 
     Black = Color3.new(0, 0, 0);
@@ -2987,16 +2987,29 @@ function Library:CreateWindow(...)
         BorderColor3 = 'AccentColor';
     });
 
-    -- Add glow effect around the main UI border
+    -- Add strong glow effect around the main UI border
     local MainUIGlow = Library:Create('UIStroke', {
         Color = Library.AccentColor;
-        Thickness = 3;
-        Transparency = 0.3;
+        Thickness = 1.5;
+        Transparency = 0;
         ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
         Parent = Inner;
     });
 
     Library:AddToRegistry(MainUIGlow, {
+        Color = 'AccentColor';
+    });
+
+    -- Add outer glow for stronger effect
+    local OuterGlowFrame = Library:Create('UIStroke', {
+        Color = Library.AccentColor;
+        Thickness = 4;
+        Transparency = 0.5;
+        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+        Parent = Outer;
+    });
+
+    Library:AddToRegistry(OuterGlowFrame, {
         Color = 'AccentColor';
     });
 
@@ -3040,10 +3053,10 @@ function Library:CreateWindow(...)
     -- TabArea now floats ABOVE the main UI (parented to Outer, not MainSectionInner)
     local TabArea = Library:Create('Frame', {
         BackgroundTransparency = 1;
-        Position = UDim2.new(0, 10, 0, -25); -- ABOVE the main frame (negative Y)
-        Size = UDim2.new(1, -20, 0, 25);
+        Position = UDim2.new(0, 8, 0, -30); -- Higher above the main frame
+        Size = UDim2.new(1, -16, 0, 25);
         ZIndex = 10;
-        Parent = Outer; -- Changed from MainSectionInner to Outer
+        Parent = Outer; -- Parented to Outer so it floats outside
     });
 
     local TabListLayout = Library:Create('UIListLayout', {
@@ -3056,7 +3069,7 @@ function Library:CreateWindow(...)
     local TabContainer = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
-        Position = UDim2.new(0, 8, 0, 8); -- Adjusted since tabs are now outside
+        Position = UDim2.new(0, 8, 0, 8);
         Size = UDim2.new(1, -16, 1, -16);
         ZIndex = 2;
         Parent = MainSectionInner;
