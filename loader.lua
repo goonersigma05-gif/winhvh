@@ -32,7 +32,7 @@ local Library = {
     FontColor = Color3.fromRGB(255, 255, 255);
     MainColor = Color3.fromRGB(28, 28, 28);
     BackgroundColor = Color3.fromRGB(20, 20, 20);
-    AccentColor = Color3.fromRGB(0, 85, 255);
+    AccentColor = Color3.fromRGB(255, 145, 0); -- Orange/gold accent
     OutlineColor = Color3.fromRGB(50, 50, 50);
     RiskColor = Color3.fromRGB(255, 50, 50),
 
@@ -3087,6 +3087,48 @@ function Library:CreateWindow(...)
             Parent = TabButton;
         });
 
+        -- Add glow effect (UIStroke)
+        local TabGlow = Library:Create('UIStroke', {
+            Color = Library.AccentColor;
+            Thickness = 1.5;
+            Transparency = 1; -- Hidden by default
+            ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+            Parent = TabButton;
+        });
+
+        Library:AddToRegistry(TabGlow, {
+            Color = 'AccentColor';
+        });
+
+        -- Add animated underline
+        local TabUnderline = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Position = UDim2.new(0, 0, 1, -2);
+            Size = UDim2.new(0, 0, 0, 2); -- Start with 0 width
+            ZIndex = 4;
+            Parent = TabButton;
+        });
+
+        Library:AddToRegistry(TabUnderline, {
+            BackgroundColor3 = 'AccentColor';
+        });
+
+        -- Add hover effects
+        TabButton.MouseEnter:Connect(function()
+            if TabFrame.Visible then return end -- Don't hover if already active
+            TweenService:Create(TabGlow, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Transparency = 0.7
+            }):Play();
+        end);
+
+        TabButton.MouseLeave:Connect(function()
+            if TabFrame.Visible then return end -- Don't change if active
+            TweenService:Create(TabGlow, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                Transparency = 1
+            }):Play();
+        end);
+
         local Blocker = Library:Create('Frame', {
             BackgroundColor3 = Library.MainColor;
             BorderSizePixel = 0;
@@ -3168,6 +3210,16 @@ function Library:CreateWindow(...)
             TabButton.BackgroundColor3 = Library.MainColor;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'MainColor';
             TabFrame.Visible = true;
+            
+            -- Animate glow to visible
+            TweenService:Create(TabGlow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Transparency = 0.3
+            }):Play();
+            
+            -- Animate underline to full width
+            TweenService:Create(TabUnderline, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(1, 0, 0, 2)
+            }):Play();
         end;
 
         function Tab:HideTab()
@@ -3175,6 +3227,16 @@ function Library:CreateWindow(...)
             TabButton.BackgroundColor3 = Library.BackgroundColor;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'BackgroundColor';
             TabFrame.Visible = false;
+            
+            -- Animate glow to hidden
+            TweenService:Create(TabGlow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                Transparency = 1
+            }):Play();
+            
+            -- Animate underline to 0 width
+            TweenService:Create(TabUnderline, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                Size = UDim2.new(0, 0, 0, 2)
+            }):Play();
         end;
 
         function Tab:SetLayoutOrder(Position)
