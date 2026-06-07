@@ -2987,97 +2987,28 @@ function Library:CreateWindow(...)
         BorderColor3 = 'AccentColor';
     });
 
-    -- Real glow effect using multiple gradient layers
-    for i = 1, 3 do
-        local GlowLayer = Library:Create('Frame', {
-            BackgroundTransparency = 1;
-            Position = UDim2.new(0, -i * 3, 0, -i * 3);
-            Size = UDim2.new(1, i * 6, 1, i * 6);
-            ZIndex = 0;
-            Parent = Outer;
-        });
+    -- Real glow effect using Shadow ImageLabel (like ciazware UI)
+    local Shadow = Library:Create('ImageLabel', {
+        Name = 'Shadow';
+        AnchorPoint = Vector2.new(0.5, 0.5);
+        BackgroundTransparency = 1;
+        Position = UDim2.new(0.5, 0, 0.5, 0);
+        Size = UDim2.new(1, 45, 1, 45);
+        ZIndex = 0;
+        Image = 'rbxassetid://2654849154';
+        ImageRectOffset = Vector2.new(2, 2);
+        ImageRectSize = Vector2.new(252, 252);
+        ImageTransparency = 0.4;
+        ScaleType = Enum.ScaleType.Slice;
+        SliceCenter = Rect.new(64, 64, 192, 192);
+        SliceScale = 0.31;
+        ImageColor3 = Library.AccentColor;
+        Parent = Outer;
+    });
 
-        -- Top glow
-        local TopGlow = Library:Create('Frame', {
-            BackgroundColor3 = Library.AccentColor;
-            BorderSizePixel = 0;
-            Position = UDim2.new(0, 0, 0, 0);
-            Size = UDim2.new(1, 0, 0, i * 3);
-            ZIndex = 0;
-            Parent = GlowLayer;
-        });
-
-        Library:Create('UIGradient', {
-            Transparency = NumberSequence.new({
-                NumberSequenceKeypoint.new(0, 1 - (0.3 / i)),
-                NumberSequenceKeypoint.new(1, 1)
-            });
-            Rotation = 90;
-            Parent = TopGlow;
-        });
-
-        -- Bottom glow
-        local BottomGlow = Library:Create('Frame', {
-            BackgroundColor3 = Library.AccentColor;
-            BorderSizePixel = 0;
-            Position = UDim2.new(0, 0, 1, -i * 3);
-            Size = UDim2.new(1, 0, 0, i * 3);
-            ZIndex = 0;
-            Parent = GlowLayer;
-        });
-
-        Library:Create('UIGradient', {
-            Transparency = NumberSequence.new({
-                NumberSequenceKeypoint.new(0, 1),
-                NumberSequenceKeypoint.new(1, 1 - (0.3 / i))
-            });
-            Rotation = 90;
-            Parent = BottomGlow;
-        });
-
-        -- Left glow
-        local LeftGlow = Library:Create('Frame', {
-            BackgroundColor3 = Library.AccentColor;
-            BorderSizePixel = 0;
-            Position = UDim2.new(0, 0, 0, 0);
-            Size = UDim2.new(0, i * 3, 1, 0);
-            ZIndex = 0;
-            Parent = GlowLayer;
-        });
-
-        Library:Create('UIGradient', {
-            Transparency = NumberSequence.new({
-                NumberSequenceKeypoint.new(0, 1 - (0.3 / i)),
-                NumberSequenceKeypoint.new(1, 1)
-            });
-            Rotation = 0;
-            Parent = LeftGlow;
-        });
-
-        -- Right glow
-        local RightGlow = Library:Create('Frame', {
-            BackgroundColor3 = Library.AccentColor;
-            BorderSizePixel = 0;
-            Position = UDim2.new(1, -i * 3, 0, 0);
-            Size = UDim2.new(0, i * 3, 1, 0);
-            ZIndex = 0;
-            Parent = GlowLayer;
-        });
-
-        Library:Create('UIGradient', {
-            Transparency = NumberSequence.new({
-                NumberSequenceKeypoint.new(0, 1),
-                NumberSequenceKeypoint.new(1, 1 - (0.3 / i))
-            });
-            Rotation = 0;
-            Parent = RightGlow;
-        });
-
-        Library:AddToRegistry(TopGlow, { BackgroundColor3 = 'AccentColor' });
-        Library:AddToRegistry(BottomGlow, { BackgroundColor3 = 'AccentColor' });
-        Library:AddToRegistry(LeftGlow, { BackgroundColor3 = 'AccentColor' });
-        Library:AddToRegistry(RightGlow, { BackgroundColor3 = 'AccentColor' });
-    end
+    Library:AddToRegistry(Shadow, {
+        ImageColor3 = 'AccentColor';
+    });
 
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
