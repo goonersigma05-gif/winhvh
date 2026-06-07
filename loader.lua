@@ -3022,11 +3022,27 @@ function Library:CreateWindow(...)
         Parent = Inner;
     });
 
+    -- TabArea in the gap BETWEEN title bar and main content
+    local TabArea = Library:Create('Frame', {
+        BackgroundTransparency = 1;
+        Position = UDim2.new(0, 8, 0, 25); -- Right after title bar
+        Size = UDim2.new(1, -16, 0, 25);
+        ZIndex = 10;
+        Parent = Inner; -- Parent to Inner (same level as MainSectionOuter)
+    });
+
+    local TabListLayout = Library:Create('UIListLayout', {
+        Padding = UDim.new(0, Config.TabPadding);
+        FillDirection = Enum.FillDirection.Horizontal;
+        SortOrder = Enum.SortOrder.LayoutOrder;
+        Parent = TabArea;
+    });
+
     local MainSectionOuter = Library:Create('Frame', {
         BackgroundColor3 = Library.BackgroundColor;
         BorderColor3 = Library.OutlineColor;
-        Position = UDim2.new(0, 8, 0, 25);
-        Size = UDim2.new(1, -16, 1, -33);
+        Position = UDim2.new(0, 8, 0, 52); -- Start BELOW the tabs (25 + 25 + 2)
+        Size = UDim2.new(1, -16, 1, -60);
         ZIndex = 1;
         Parent = Inner;
     });
@@ -3050,27 +3066,11 @@ function Library:CreateWindow(...)
         BackgroundColor3 = 'BackgroundColor';
     });
 
-    -- TabArea inside the main content frame at the top
-    local TabArea = Library:Create('Frame', {
-        BackgroundTransparency = 1;
-        Position = UDim2.new(0, 8, 0, 8);
-        Size = UDim2.new(1, -16, 0, 21);
-        ZIndex = 1;
-        Parent = MainSectionInner;
-    });
-
-    local TabListLayout = Library:Create('UIListLayout', {
-        Padding = UDim.new(0, Config.TabPadding);
-        FillDirection = Enum.FillDirection.Horizontal;
-        SortOrder = Enum.SortOrder.LayoutOrder;
-        Parent = TabArea;
-    });
-
     local TabContainer = Library:Create('Frame', {
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
-        Position = UDim2.new(0, 8, 0, 30);
-        Size = UDim2.new(1, -16, 1, -38);
+        Position = UDim2.new(0, 8, 0, 8);
+        Size = UDim2.new(1, -16, 1, -16);
         ZIndex = 2;
         Parent = MainSectionInner;
     });
