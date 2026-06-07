@@ -2987,30 +2987,22 @@ function Library:CreateWindow(...)
         BorderColor3 = 'AccentColor';
     });
 
-    -- Add strong glow effect around the main UI border
-    local MainUIGlow = Library:Create('UIStroke', {
-        Color = Library.AccentColor;
-        Thickness = 1.5;
-        Transparency = 0;
-        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
-        Parent = Inner;
-    });
-
-    Library:AddToRegistry(MainUIGlow, {
-        Color = 'AccentColor';
-    });
-
-    -- Add outer glow for stronger effect
-    local OuterGlowFrame = Library:Create('UIStroke', {
-        Color = Library.AccentColor;
-        Thickness = 4;
-        Transparency = 0.5;
-        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+    -- Real glow effect using ImageLabel with 9-slice scaling
+    local GlowImage = Library:Create('ImageLabel', {
+        BackgroundTransparency = 1;
+        Position = UDim2.new(0, -15, 0, -15);
+        Size = UDim2.new(1, 30, 1, 30);
+        Image = 'rbxassetid://4996891970'; -- Glow/shadow image
+        ImageColor3 = Library.AccentColor;
+        ImageTransparency = 0.5;
+        ScaleType = Enum.ScaleType.Slice;
+        SliceCenter = Rect.new(20, 20, 280, 280);
+        ZIndex = 0;
         Parent = Outer;
     });
 
-    Library:AddToRegistry(OuterGlowFrame, {
-        Color = 'AccentColor';
+    Library:AddToRegistry(GlowImage, {
+        ImageColor3 = 'AccentColor';
     });
 
     local WindowLabel = Library:CreateLabel({
@@ -3022,13 +3014,27 @@ function Library:CreateWindow(...)
         Parent = Inner;
     });
 
-    -- TabArea in the gap BETWEEN title bar and main content
+    -- Orange bar under title
+    local TitleUnderline = Library:Create('Frame', {
+        BackgroundColor3 = Library.AccentColor;
+        BorderSizePixel = 0;
+        Position = UDim2.new(0, 0, 0, 25);
+        Size = UDim2.new(1, 0, 0, 2);
+        ZIndex = 2;
+        Parent = Inner;
+    });
+
+    Library:AddToRegistry(TitleUnderline, {
+        BackgroundColor3 = 'AccentColor';
+    });
+
+    -- TabArea in the gap BETWEEN orange title line and main content
     local TabArea = Library:Create('Frame', {
         BackgroundTransparency = 1;
-        Position = UDim2.new(0, 8, 0, 25); -- Right after title bar
+        Position = UDim2.new(0, 8, 0, 30); -- Below title + orange line (25 + 2 + 3 gap)
         Size = UDim2.new(1, -16, 0, 25);
         ZIndex = 10;
-        Parent = Inner; -- Parent to Inner (same level as MainSectionOuter)
+        Parent = Inner;
     });
 
     local TabListLayout = Library:Create('UIListLayout', {
@@ -3041,8 +3047,8 @@ function Library:CreateWindow(...)
     local MainSectionOuter = Library:Create('Frame', {
         BackgroundColor3 = Library.BackgroundColor;
         BorderColor3 = Library.OutlineColor;
-        Position = UDim2.new(0, 8, 0, 52); -- Start BELOW the tabs (25 + 25 + 2)
-        Size = UDim2.new(1, -16, 1, -60);
+        Position = UDim2.new(0, 8, 0, 58); -- Below tabs (30 + 25 + 3)
+        Size = UDim2.new(1, -16, 1, -66);
         ZIndex = 1;
         Parent = Inner;
     });
