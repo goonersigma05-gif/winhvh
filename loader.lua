@@ -2987,32 +2987,6 @@ function Library:CreateWindow(...)
         BorderColor3 = 'AccentColor';
     });
 
-    -- Add glowing border effect around entire window
-    local WindowGlow = Library:Create('UIStroke', {
-        Color = Library.AccentColor;
-        Thickness = 2;
-        Transparency = 0;
-        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
-        Parent = Inner;
-    });
-
-    Library:AddToRegistry(WindowGlow, {
-        Color = 'AccentColor';
-    });
-
-    -- Add outer glow shadow for blur effect
-    local OuterGlow = Library:Create('UIStroke', {
-        Color = Library.AccentColor;
-        Thickness = 6;
-        Transparency = 0.6;
-        ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
-        Parent = Outer;
-    });
-
-    Library:AddToRegistry(OuterGlow, {
-        Color = 'AccentColor';
-    });
-
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
         Size = UDim2.new(0, 0, 0, 25);
@@ -3113,47 +3087,19 @@ function Library:CreateWindow(...)
             Parent = TabButton;
         });
 
-        -- Add glow effect (UIStroke)
-        local TabGlow = Library:Create('UIStroke', {
-            Color = Library.AccentColor;
-            Thickness = 1.5;
-            Transparency = 1; -- Hidden by default
-            ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
-            Parent = TabButton;
-        });
-
-        Library:AddToRegistry(TabGlow, {
-            Color = 'AccentColor';
-        });
-
-        -- Add animated underline
-        local TabUnderline = Library:Create('Frame', {
+        -- Add active line ABOVE the button
+        local TabActiveLine = Library:Create('Frame', {
             BackgroundColor3 = Library.AccentColor;
             BorderSizePixel = 0;
-            Position = UDim2.new(0, 0, 1, -2);
-            Size = UDim2.new(0, 0, 0, 2); -- Start with 0 width
+            Position = UDim2.new(0, 0, 0, 0);
+            Size = UDim2.new(0, 0, 0, 2); -- Start with 0 width, at TOP
             ZIndex = 4;
             Parent = TabButton;
         });
 
-        Library:AddToRegistry(TabUnderline, {
+        Library:AddToRegistry(TabActiveLine, {
             BackgroundColor3 = 'AccentColor';
         });
-
-        -- Add hover effects
-        TabButton.MouseEnter:Connect(function()
-            if TabFrame.Visible then return end -- Don't hover if already active
-            TweenService:Create(TabGlow, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-                Transparency = 0.7
-            }):Play();
-        end);
-
-        TabButton.MouseLeave:Connect(function()
-            if TabFrame.Visible then return end -- Don't change if active
-            TweenService:Create(TabGlow, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
-                Transparency = 1
-            }):Play();
-        end);
 
         local Blocker = Library:Create('Frame', {
             BackgroundColor3 = Library.MainColor;
@@ -3237,13 +3183,8 @@ function Library:CreateWindow(...)
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'MainColor';
             TabFrame.Visible = true;
             
-            -- Animate glow to visible
-            TweenService:Create(TabGlow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-                Transparency = 0.3
-            }):Play();
-            
-            -- Animate underline to full width
-            TweenService:Create(TabUnderline, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            -- Animate line ABOVE button to full width
+            TweenService:Create(TabActiveLine, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
                 Size = UDim2.new(1, 0, 0, 2)
             }):Play();
         end;
@@ -3254,13 +3195,8 @@ function Library:CreateWindow(...)
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'BackgroundColor';
             TabFrame.Visible = false;
             
-            -- Animate glow to hidden
-            TweenService:Create(TabGlow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
-                Transparency = 1
-            }):Play();
-            
-            -- Animate underline to 0 width
-            TweenService:Create(TabUnderline, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+            -- Animate line to 0 width
+            TweenService:Create(TabActiveLine, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
                 Size = UDim2.new(0, 0, 0, 2)
             }):Play();
         end;
